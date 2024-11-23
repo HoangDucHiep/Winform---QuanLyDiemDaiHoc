@@ -238,4 +238,50 @@
     <Parameter Name="diemHeChu" Type="System.String" DbType="NVarChar(10)" />
     <Return Type="System.Int32" />
   </Function>
+  <Function Name="dbo.LopHP_SelectByKhoaAndCTDT" Method="LopHP_SelectByKhoaAndCTDT">
+    <Parameter Name="maKhoa" Type="System.String" DbType="NVarChar(20)" />
+    <Parameter Name="maCTDT" Type="System.String" DbType="NVarChar(20)" />
+    <ElementType Name="LopHP_SelectByKhoaAndCTDTResult">
+      <Column Name="MaKhoa" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="TenKhoa" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="MaCTDT" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="TenCTDT" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="MaKhoa1" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="MaCTDT1" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="MaHocPhan" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="KyHoc" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MaHocPhan1" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="TenHocPhan" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="MaBoMon" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="SoTinChi" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TrongSoDiemQuaTrinh" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="TrongSoDiemThiKTHP" Type="System.Double" DbType="Float" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.HocPhan_SelectByMaCTDT" Method="HocPhan_SelectByMaCTDT">
+    <Parameter Name="maCTDT" Type="System.String" DbType="NVarChar(30)" />
+    <ElementType Name="HocPhan_SelectByMaCTDTResult">
+      <Column Name="MaCTDT" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="MaHocPhan" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="KyHoc" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MaHocPhan1" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="TenHocPhan" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="MaBoMon" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="SoTinChi" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TrongSoDiemQuaTrinh" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="TrongSoDiemThiKTHP" Type="System.Double" DbType="Float" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.LopHP_SelectByMaHP" Method="LopHP_SelectByMaHP">
+    <Parameter Name="maHP" Type="System.String" DbType="NVarChar(20)" />
+    <ElementType Name="LopHP_SelectByMaHPResult">
+      <Column Name="MaHocPhan" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="MaLopHocPhan" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="TenLopHocPhan" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="MaGiangVien" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="NamHoc" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="HocKy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DotHoc" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

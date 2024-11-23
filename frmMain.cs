@@ -29,5 +29,11 @@ namespace QuanLyDiemDaiHoc
             frmNhapDiem frmNhapDiem = new frmNhapDiem();
             frmNhapDiem.ShowDialog();
         }
+
+        private void quảnLýLớpHọcPhầnToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmLopHP frmLopHP = new frmLopHP();
+            frmLopHP.ShowDialog();
+        }
     }
 }

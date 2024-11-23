@@ -32,6 +32,7 @@
             this.xửLýDữLiệuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quảnLíSinhViênLớpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quảnLýĐiểmToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.quảnLýLớpHọcPhầnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -50,7 +51,8 @@
             // 
             this.xửLýDữLiệuToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.quảnLíSinhViênLớpToolStripMenuItem,
-            this.quảnLýĐiểmToolStripMenuItem});
+            this.quảnLýĐiểmToolStripMenuItem,
+            this.quảnLýLớpHọcPhầnToolStripMenuItem});
             this.xửLýDữLiệuToolStripMenuItem.Name = "xửLýDữLiệuToolStripMenuItem";
             this.xửLýDữLiệuToolStripMenuItem.Size = new System.Drawing.Size(106, 24);
             this.xửLýDữLiệuToolStripMenuItem.Text = "Xử lý dữ liệu";
@@ -68,6 +70,13 @@
             this.quảnLýĐiểmToolStripMenuItem.Size = new System.Drawing.Size(229, 26);
             this.quảnLýĐiểmToolStripMenuItem.Text = "Quản lý điểm";
             this.quảnLýĐiểmToolStripMenuItem.Click += new System.EventHandler(this.quảnLýĐiểmToolStripMenuItem_Click);
+            // 
+            // quảnLýLớpHọcPhầnToolStripMenuItem
+            // 
+            this.quảnLýLớpHọcPhầnToolStripMenuItem.Name = "quảnLýLớpHọcPhầnToolStripMenuItem";
+            this.quảnLýLớpHọcPhầnToolStripMenuItem.Size = new System.Drawing.Size(233, 26);
+            this.quảnLýLớpHọcPhầnToolStripMenuItem.Text = "Quản lý lớp học phần";
+            this.quảnLýLớpHọcPhầnToolStripMenuItem.Click += new System.EventHandler(this.quảnLýLớpHọcPhầnToolStripMenuItem_Click);
             // 
             // frmMain
             // 
@@ -91,6 +100,7 @@
         private System.Windows.Forms.ToolStripMenuItem xửLýDữLiệuToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem quảnLíSinhViênLớpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem quảnLýĐiểmToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem quảnLýLớpHọcPhầnToolStripMenuItem;
     }
 }
 

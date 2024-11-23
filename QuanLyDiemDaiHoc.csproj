@@ -47,6 +47,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmLopHP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLopHP.Designer.cs">
+      <DependentUpon>frmLopHP.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmNhapDiem.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -77,6 +83,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>QuanLyDiemTruongDaiHocDataSet.xsd</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="frmLopHP.resx">
+      <DependentUpon>frmLopHP.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
