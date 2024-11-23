@@ -656,6 +656,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1450, 874);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(1468, 921);
             this.Name = "frmSinhVienLop";
             this.Text = "frmSinhVienLop";
             this.Load += new System.EventHandler(this.frmSinhVienLop_Load);

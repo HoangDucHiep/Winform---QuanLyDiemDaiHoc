@@ -178,4 +178,64 @@
     <Parameter Name="maSV" Type="System.String" DbType="VarChar(10)" />
     <Return Type="System.Int32" />
   </Function>
+  <Function Name="dbo.DIEM_SELECT" Method="DIEM_SELECT">
+    <ElementType Name="DIEM_SELECTResult">
+      <Column Name="MaHocPhan" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="MaLopHocPhan" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="MaSinhVien" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="DiemQuaTrinh" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="DiemHe4" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="DiemHeChu" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="DiemThiKTHP" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="DiemTKHP" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="LanHoc" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="HoTen" Type="System.String" DbType="NVarChar(71)" CanBeNull="true" />
+      <Column Name="MaLop" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="MaKhoa" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="KhoaHoc" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="TenLopHocPhan" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="MaGiangVien" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="NamHoc" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="HocKy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DotHoc" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.Diem_Select_With_Condition" Method="Diem_Select_With_Condition">
+    <Parameter Name="maKhoa" Type="System.String" DbType="NVarChar(10)" />
+    <Parameter Name="khoaHoc" Type="System.String" DbType="NVarChar(10)" />
+    <Parameter Name="maLopHp" Type="System.String" DbType="NVarChar(20)" />
+    <ElementType Name="Diem_Select_With_ConditionResult">
+      <Column Name="MaHocPhan" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="MaLopHocPhan" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="MaSinhVien" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="DiemQuaTrinh" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="DiemHe4" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="DiemHeChu" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="DiemThiKTHP" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="DiemTKHP" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="LanHoc" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="HoTen" Type="System.String" DbType="NVarChar(71)" CanBeNull="true" />
+      <Column Name="MaLop" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="MaKhoa" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="KhoaHoc" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="TenLopHocPhan" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="MaGiangVien" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="NamHoc" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="HocKy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DotHoc" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TrongSoDiemQuaTrinh" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="TrongSoDiemThiKTHP" Type="System.Double" DbType="Float" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.DIEM_UPDATE" Method="DIEM_UPDATE">
+    <Parameter Name="maHP" Type="System.String" DbType="NVarChar(20)" />
+    <Parameter Name="maLopHP" Type="System.String" DbType="NVarChar(20)" />
+    <Parameter Name="maSV" Type="System.String" DbType="NVarChar(20)" />
+    <Parameter Name="diemTP" Type="System.Double" DbType="Float" />
+    <Parameter Name="diemThi" Type="System.Double" DbType="Float" />
+    <Parameter Name="diemKTHP" Type="System.Double" DbType="Float" />
+    <Parameter Name="diemHe4" Type="System.Double" DbType="Float" />
+    <Parameter Name="diemHeChu" Type="System.String" DbType="NVarChar(10)" />
+    <Return Type="System.Int32" />
+  </Function>
 </Database>

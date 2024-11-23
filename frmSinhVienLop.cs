@@ -80,6 +80,7 @@ namespace QuanLyDiemDaiHoc
                 else
                 {
                     ClearLopBindings();
+                    dgvSV.DataSource = null;
                 }
             }
             else
@@ -329,6 +330,11 @@ namespace QuanLyDiemDaiHoc
                                 DienThoai = sv.DienThoai,
                                 Email = sv.Email
                             }).ToList();
+
+            if (sinhViens == null || sinhViens.Count == 0)
+            {
+                dgvSV.DataSource = null;
+            }
 
             BindingSource bindingSource = new BindingSource();
             bindingSource.DataSource = sinhViens;

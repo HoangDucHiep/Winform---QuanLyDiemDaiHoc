@@ -23,5 +23,11 @@ namespace QuanLyDiemDaiHoc
             frm.ShowDialog();
 
         }
+
+        private void quảnLýĐiểmToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmNhapDiem frmNhapDiem = new frmNhapDiem();
+            frmNhapDiem.ShowDialog();
+        }
     }
 }
