@@ -112,7 +112,7 @@
             this.btnRemove.Location = new System.Drawing.Point(738, 37);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(90, 43);
-            this.btnRemove.TabIndex = 26;
+            this.btnRemove.TabIndex = 5;
             this.btnRemove.Text = "Xóa";
             this.btnRemove.UseVisualStyleBackColor = true;
             this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
@@ -125,7 +125,7 @@
             this.btnSave.Location = new System.Drawing.Point(621, 37);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(94, 43);
-            this.btnSave.TabIndex = 24;
+            this.btnSave.TabIndex = 4;
             this.btnSave.Text = "Lưu";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -137,7 +137,7 @@
             this.btnAdd.Location = new System.Drawing.Point(505, 37);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(90, 43);
-            this.btnAdd.TabIndex = 22;
+            this.btnAdd.TabIndex = 3;
             this.btnAdd.Text = "Thêm";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
@@ -149,7 +149,7 @@
             this.txtBoxTenKhoa.Location = new System.Drawing.Point(195, 37);
             this.txtBoxTenKhoa.Name = "txtBoxTenKhoa";
             this.txtBoxTenKhoa.Size = new System.Drawing.Size(252, 26);
-            this.txtBoxTenKhoa.TabIndex = 12;
+            this.txtBoxTenKhoa.TabIndex = 2;
             this.txtBoxTenKhoa.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxTenKhoa_KeyPress);
             // 
             // label4
@@ -184,7 +184,8 @@
             this.txtBoxMaKhoa.Location = new System.Drawing.Point(3, 37);
             this.txtBoxMaKhoa.Name = "txtBoxMaKhoa";
             this.txtBoxMaKhoa.Size = new System.Drawing.Size(148, 26);
-            this.txtBoxMaKhoa.TabIndex = 3;
+            this.txtBoxMaKhoa.TabIndex = 1;
+            this.txtBoxMaKhoa.TabStop = false;
             this.txtBoxMaKhoa.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxMaKhoa_KeyPress);
             // 
             // dgvKhoa

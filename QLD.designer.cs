@@ -325,6 +325,48 @@ namespace QuanLyDiemDaiHoc
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), maKhoa);
 			return ((int)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.BoMon_Update")]
+		public int BoMon_Update([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(20)")] string maBoMon, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(100)")] string tenBoMon, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(20)")] string maKhoa, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(10)")] string truongBoMon)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), maBoMon, tenBoMon, maKhoa, truongBoMon);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.BoMon_Insert")]
+		public int BoMon_Insert([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(20)")] string maBoMon, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(100)")] string tenBoMon, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(20)")] string maKhoa, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(10)")] string truongBoMon)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), maBoMon, tenBoMon, maKhoa, truongBoMon);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.BoMon_Delete")]
+		public int BoMon_Delete([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(20)")] string maBoMon)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), maBoMon);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.HocPhan_Delete")]
+		public int HocPhan_Delete([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(10)")] string maHP)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), maHP);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.HocPhan_Insert")]
+		public int HocPhan_Insert([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(10)")] string maHP, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(50)")] string tenHP, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(10)")] string maMon, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> soTC, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Float")] System.Nullable<double> trongSoQT, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Float")] System.Nullable<double> trongSoThi)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), maHP, tenHP, maMon, soTC, trongSoQT, trongSoThi);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.HocPhan_Update")]
+		public int HocPhan_Update([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(10)")] string maHP, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(50)")] string tenHP, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(10)")] string maMon, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> soTC, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Float")] System.Nullable<double> trongSoQT, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Float")] System.Nullable<double> trongSoThi)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), maHP, tenHP, maMon, soTC, trongSoQT, trongSoThi);
+			return ((int)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.BoMon")]

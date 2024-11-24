@@ -347,4 +347,44 @@
     <Parameter Name="maKhoa" Type="System.String" DbType="NVarChar(10)" />
     <Return Type="System.Int32" />
   </Function>
+  <Function Name="dbo.BoMon_Update" Method="BoMon_Update">
+    <Parameter Name="maBoMon" Type="System.String" DbType="NVarChar(20)" />
+    <Parameter Name="tenBoMon" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="maKhoa" Type="System.String" DbType="NVarChar(20)" />
+    <Parameter Name="truongBoMon" Type="System.String" DbType="NVarChar(10)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.BoMon_Insert" Method="BoMon_Insert">
+    <Parameter Name="maBoMon" Type="System.String" DbType="NVarChar(20)" />
+    <Parameter Name="tenBoMon" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="maKhoa" Type="System.String" DbType="NVarChar(20)" />
+    <Parameter Name="truongBoMon" Type="System.String" DbType="NVarChar(10)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.BoMon_Delete" Method="BoMon_Delete">
+    <Parameter Name="maBoMon" Type="System.String" DbType="NVarChar(20)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.HocPhan_Delete" Method="HocPhan_Delete">
+    <Parameter Name="maHP" Type="System.String" DbType="NVarChar(10)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.HocPhan_Insert" Method="HocPhan_Insert">
+    <Parameter Name="maHP" Type="System.String" DbType="NVarChar(10)" />
+    <Parameter Name="tenHP" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="maMon" Type="System.String" DbType="NVarChar(10)" />
+    <Parameter Name="soTC" Type="System.Int32" DbType="Int" />
+    <Parameter Name="trongSoQT" Type="System.Double" DbType="Float" />
+    <Parameter Name="trongSoThi" Type="System.Double" DbType="Float" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.HocPhan_Update" Method="HocPhan_Update">
+    <Parameter Name="maHP" Type="System.String" DbType="NVarChar(10)" />
+    <Parameter Name="tenHP" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="maMon" Type="System.String" DbType="NVarChar(10)" />
+    <Parameter Name="soTC" Type="System.Int32" DbType="Int" />
+    <Parameter Name="trongSoQT" Type="System.Double" DbType="Float" />
+    <Parameter Name="trongSoThi" Type="System.Double" DbType="Float" />
+    <Return Type="System.Int32" />
+  </Function>
 </Database>

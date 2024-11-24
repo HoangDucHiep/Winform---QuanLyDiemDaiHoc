@@ -26,6 +26,8 @@ namespace QuanLyDiemDaiHoc
 
             updateTextBox();
 
+            txtBoxTenKhoa.TabStop = true;
+
         }
 
         bool adKhoa = false;

@@ -34,6 +34,7 @@
             this.quảnLýĐiểmToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quảnLýLớpHọcPhầnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quảnLýKhoaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.quảnLýMônHọcPhầnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -54,7 +55,8 @@
             this.quảnLíSinhViênLớpToolStripMenuItem,
             this.quảnLýĐiểmToolStripMenuItem,
             this.quảnLýLớpHọcPhầnToolStripMenuItem,
-            this.quảnLýKhoaToolStripMenuItem});
+            this.quảnLýKhoaToolStripMenuItem,
+            this.quảnLýMônHọcPhầnToolStripMenuItem});
             this.xửLýDữLiệuToolStripMenuItem.Name = "xửLýDữLiệuToolStripMenuItem";
             this.xửLýDữLiệuToolStripMenuItem.Size = new System.Drawing.Size(106, 24);
             this.xửLýDữLiệuToolStripMenuItem.Text = "Xử lý dữ liệu";
@@ -87,6 +89,13 @@
             this.quảnLýKhoaToolStripMenuItem.Text = "Quản lý khoa";
             this.quảnLýKhoaToolStripMenuItem.Click += new System.EventHandler(this.quảnLýKhoaToolStripMenuItem_Click);
             // 
+            // quảnLýMônHọcPhầnToolStripMenuItem
+            // 
+            this.quảnLýMônHọcPhầnToolStripMenuItem.Name = "quảnLýMônHọcPhầnToolStripMenuItem";
+            this.quảnLýMônHọcPhầnToolStripMenuItem.Size = new System.Drawing.Size(244, 26);
+            this.quảnLýMônHọcPhầnToolStripMenuItem.Text = "Quản lý môn, học phần";
+            this.quảnLýMônHọcPhầnToolStripMenuItem.Click += new System.EventHandler(this.quảnLýMônHọcPhầnToolStripMenuItem_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -111,6 +120,7 @@
         private System.Windows.Forms.ToolStripMenuItem quảnLýĐiểmToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem quảnLýLớpHọcPhầnToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem quảnLýKhoaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem quảnLýMônHọcPhầnToolStripMenuItem;
     }
 }
 

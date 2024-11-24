@@ -41,5 +41,11 @@ namespace QuanLyDiemDaiHoc
             frmKhoa frmKhoa = new frmKhoa();
             frmKhoa.ShowDialog();
         }
+
+        private void quảnLýMônHọcPhầnToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmKhoaBoMonHP frmKhoaBoMonHP = new frmKhoaBoMonHP();
+            frmKhoaBoMonHP.ShowDialog();
+        }
     }
 }
