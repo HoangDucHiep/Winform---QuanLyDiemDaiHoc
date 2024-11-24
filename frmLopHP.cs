@@ -26,16 +26,19 @@ namespace QuanLyDiemDaiHoc
             cbKhoa.ValueMember = "MaKhoa";
 
             UpdateCTDT();
+            UpdateListALlSV();
         }
 
         private void cbCTDT_SelectedIndexChanged(object sender, EventArgs e)
         {
             UpdateHPAndLopHP();
+            UpdateListALlSV();
         }
 
         private void cbKhoa_SelectedIndexChanged(object sender, EventArgs e)
         {
             UpdateCTDT();
+            UpdateListALlSV();
         }
 
         private void cbHP_SelectedIndexChanged(object sender, EventArgs e)
@@ -66,6 +69,8 @@ namespace QuanLyDiemDaiHoc
 
 
                 UpdateHPAndLopHP();
+                UpdateKhoaHoc();
+                UpdateListALlSV();
             }
         }
 
@@ -89,7 +94,7 @@ namespace QuanLyDiemDaiHoc
             }
 
 
-            cbKhoas.DataSource = db.Lops.Where(s => s.MaKhoa == cbKhoa.SelectedValue.ToString() && s.MaCTDT == cbCTDT.SelectedValue.ToString()).Select(c=>c.KhoaHoc);
+            cbKhoas.DataSource = db.Lops.Where(s => s.MaKhoa == cbKhoa.SelectedValue.ToString() && s.MaCTDT == cbCTDT.SelectedValue.ToString()).Select(c => c.KhoaHoc);
 
             cbHP.DataSource = hpList;
             cbHP.DisplayMember = "TenHocPhan";
@@ -133,8 +138,8 @@ namespace QuanLyDiemDaiHoc
                 cbGiangVien.ValueMember = "MaGiangVien";
 
                 cbGiangVien.SelectedValue = lopHpList
-                    .Where(c=>c.MaLopHocPhan == cbLopHp.SelectedValue.ToString())
-                    .Select(c=>c.MaGiangVien).FirstOrDefault().ToString();
+                    .Where(c => c.MaLopHocPhan == cbLopHp.SelectedValue.ToString())
+                    .Select(c => c.MaGiangVien).FirstOrDefault().ToString();
 
                 txtBoxNamHoc.DataBindings.Clear();
                 txtBoxNamHoc.DataBindings.Add("Text", cbLopHp.DataSource, "NamHoc");
@@ -144,7 +149,194 @@ namespace QuanLyDiemDaiHoc
             }
 
         }
+
+        private void UpdateKhoaHoc()
+        {
+            if (cbKhoas.SelectedValue == null) return;
+
+            var lopList = db.Lops_By(cbKhoa.SelectedValue.ToString(), cbCTDT.SelectedValue.ToString(), cbKhoas.SelectedValue.ToString()).ToList();
+
+            if (lopList.Count == 0)
+            {
+                cbLop.DataSource = null;
+                cbLop.Text = string.Empty;
+            }
+            else
+            {
+                cbLop.DataSource = lopList;
+                cbLop.DisplayMember = "TenLop";
+                cbLop.ValueMember = "MaLop";
+            }
+        }
+
+        private void cbKhoas_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateKhoaHoc();
+            UpdateListALlSV();
+        }
+
+
+        private void UpdateListALlSV()
+        {
+            if (cbKhoa.SelectedValue == null || cbCTDT.SelectedValue == null || cbKhoas.SelectedValue == null)
+            {
+                dgvAllSV.DataSource = null;
+                return;
+            };
+
+            var sinhViens = db.SinhViens.Where(sv => sv.MaLop == cbLop.SelectedValue.ToString())
+                            .Select(sv => new
+                            {
+                                MaSinhVien = sv.MaSinhVien,
+                                HoDem = sv.HoDem,
+                                Ten = sv.Ten,
+                                Lop = sv.MaLop
+                            }).OrderBy(c => c.Ten).ThenBy(c => c.HoDem).ToList();
+
+            if (sinhViens.Count == 0)
+            {
+                dgvAllSV.DataSource = null;
+            }
+            else
+            {
+                BindingSource bindingSource = new BindingSource();
+                bindingSource.DataSource = sinhViens;
+                this.dgvAllSV.DataSource = bindingSource;
+
+                this.dgvAllSV.Columns["MaSinhVien"].HeaderText = "Mã Sinh Viên";
+                this.dgvAllSV.Columns["HoDem"].HeaderText = "Họ Đệm";
+                this.dgvAllSV.Columns["Ten"].HeaderText = "Tên";
+                this.dgvAllSV.Columns["Lop"].HeaderText = "Lớp";
+            }
+
+        }
+
+
+        private void UpdateListSelectedSV()
+        {
+            if (cbKhoa.SelectedValue == null || cbCTDT.SelectedValue == null || cbKhoas.SelectedValue == null)
+            {
+                dgvSelectedSV.DataSource = null;
+                return;
+            };
+
+            var sinhViens = db.SinhVien_ByLopHP(cbLopHp.SelectedValue.ToString())
+                            .Select(sv => new
+                            {
+                                MaSinhVien = sv.MaSinhVien,
+                                HoDem = sv.HoDem,
+                                Ten = sv.Ten,
+                                Lop = sv.MaLop,
+                                LanHoc = sv.LanHoc
+                            }).OrderBy(c => c.Ten).ThenBy(c => c.HoDem).ToList();
+
+
+            if (sinhViens.Count == 0)
+            {
+                dgvSelectedSV.DataSource = null;
+            }
+            else
+            {
+                BindingSource bindingSource = new BindingSource();
+                bindingSource.DataSource = sinhViens;
+                this.dgvSelectedSV.DataSource = bindingSource;
+
+                this.dgvSelectedSV.Columns["MaSinhVien"].HeaderText = "Mã Sinh Viên";
+                this.dgvSelectedSV.Columns["HoDem"].HeaderText = "Họ Đệm";
+                this.dgvSelectedSV.Columns["Ten"].HeaderText = "Tên";
+                this.dgvSelectedSV.Columns["Lop"].HeaderText = "Lớp";
+                this.dgvSelectedSV.Columns["LanHoc"].HeaderText = "Lần Học";
+            }
+
+        }
+
+        private void cbLopHp_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateListSelectedSV();
+        }
+
+        private void btnAddSV_Click(object sender, EventArgs e)
+        {
+            var selectedList = dgvAllSV.SelectedRows;
+
+            if (selectedList.Count == 0) return;
+
+            foreach (DataGridViewRow row in selectedList)
+            {
+                var maSinhVien = row.Cells["MaSinhVien"].Value.ToString();
+                var maLopHocPhan = cbLopHp.SelectedValue.ToString();
+                var maHP = cbHP.SelectedValue.ToString();
+                try
+                {
+                    db.LopHP_SV_Add(maHP, maLopHocPhan, maSinhVien);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+
+            UpdateListSelectedSV();
+
+
+        }
+
+        private void btnRemoveSV_Click(object sender, EventArgs e)
+        {
+            var selectedList = dgvSelectedSV.SelectedRows;
+
+            if (selectedList.Count == 0) return;
+
+            foreach (DataGridViewRow row in selectedList)
+            {
+                var maSinhVien = row.Cells["MaSinhVien"].Value.ToString();
+                var maLopHocPhan = cbLopHp.SelectedValue.ToString();
+                var maHP = cbHP.SelectedValue.ToString();
+                db.LopHP_SV_Remove(maHP, maLopHocPhan, maSinhVien);
+
+            }
+
+            UpdateListSelectedSV();
+        }
+
+        bool adHP = false;
+        private void btnAddLopHP_Click(object sender, EventArgs e)
+        {
+            adHP = true;
+            cbLopHp.Enabled = false;
+            txtBoxMaLopHP.Text = string.Empty;
+            txtBoxTenLopHP.Text = string.Empty;
+            txtBoxNamHoc.Text = string.Empty;
+            txtBoxHocKy.Text = string.Empty;
+            cbGiangVien.SelectedIndex = -1;
+
+            btnXoaLopHP.Text = "Hủy";
+            btnAddLopHP.Enabled = false;
+        }
+
+        private void btnXoaLopHP_Click(object sender, EventArgs e)
+        {
+            if (adHP)
+            {
+                adHP = false;
+                btnAddLopHP.Enabled = true;
+                cbLopHp.Enabled = true;
+                btnXoaLopHP.Text = "Xóa";
+                UpdateLopHP();
+            }
+            else
+            {
+                if (cbLopHp.SelectedValue == null) return;
+                var maLopHocPhan = cbLopHp.SelectedValue.ToString();
+                var maHP = cbHP.SelectedValue.ToString();
+                UpdateLopHP();
+            }
+        }
     }
+
+
+
+
 
     public partial class GiangVien
     {

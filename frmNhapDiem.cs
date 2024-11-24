@@ -59,7 +59,7 @@ namespace QuanLyDiemDaiHoc
                              TrongSoDiemQuaTrinh = d.TrongSoDiemQuaTrinh,
                              TrongSoDiemThiKTHP = d.TrongSoDiemThiKTHP,
                              MaHocPhan = d.MaHocPhan
-                         }).ToList();
+                         }).Distinct().ToList();
 
             BindingSource bindingSource = new BindingSource();
             bindingSource.DataSource = data;

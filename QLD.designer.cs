@@ -262,6 +262,34 @@ namespace QuanLyDiemDaiHoc
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), maHP);
 			return ((ISingleResult<LopHP_SelectByMaHPResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.LopHP_SV_Add")]
+		public int LopHP_SV_Add([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(20)")] string maHP, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(20)")] string maLopHP, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(30)")] string maSV)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), maHP, maLopHP, maSV);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.LopHP_SV_Remove")]
+		public int LopHP_SV_Remove([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(20)")] string maHP, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(20)")] string maLopHP, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(30)")] string maSV)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), maHP, maLopHP, maSV);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SinhVien_ByLopHP")]
+		public ISingleResult<SinhVien_ByLopHPResult> SinhVien_ByLopHP([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(20)")] string maLopHP)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), maLopHP);
+			return ((ISingleResult<SinhVien_ByLopHPResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.LopHP_Insert")]
+		public int LopHP_Insert([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(20)")] string maHP, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(30)")] string maLopHP, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(100)")] string tenLopHP, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(10)")] string maGV, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(20)")] string namHoc, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(10)")] string hocKy)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), maHP, maLopHP, tenLopHP, maGV, namHoc, hocKy);
+			return ((int)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.BoMon")]
@@ -4203,6 +4231,194 @@ namespace QuanLyDiemDaiHoc
 				if ((this._DotHoc != value))
 				{
 					this._DotHoc = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SinhVien_ByLopHPResult
+	{
+		
+		private string _MaSinhVien;
+		
+		private string _HoDem;
+		
+		private string _Ten;
+		
+		private string _MaLop;
+		
+		private System.Nullable<System.DateTime> _NgaySinh;
+		
+		private string _DiaChi;
+		
+		private string _DienThoai;
+		
+		private string _Email;
+		
+		private string _MaSinhVien1;
+		
+		private System.Nullable<int> _LanHoc;
+		
+		public SinhVien_ByLopHPResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaSinhVien", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
+		public string MaSinhVien
+		{
+			get
+			{
+				return this._MaSinhVien;
+			}
+			set
+			{
+				if ((this._MaSinhVien != value))
+				{
+					this._MaSinhVien = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HoDem", DbType="NVarChar(35)")]
+		public string HoDem
+		{
+			get
+			{
+				return this._HoDem;
+			}
+			set
+			{
+				if ((this._HoDem != value))
+				{
+					this._HoDem = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Ten", DbType="NVarChar(35)")]
+		public string Ten
+		{
+			get
+			{
+				return this._Ten;
+			}
+			set
+			{
+				if ((this._Ten != value))
+				{
+					this._Ten = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaLop", DbType="VarChar(25)")]
+		public string MaLop
+		{
+			get
+			{
+				return this._MaLop;
+			}
+			set
+			{
+				if ((this._MaLop != value))
+				{
+					this._MaLop = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NgaySinh", DbType="Date")]
+		public System.Nullable<System.DateTime> NgaySinh
+		{
+			get
+			{
+				return this._NgaySinh;
+			}
+			set
+			{
+				if ((this._NgaySinh != value))
+				{
+					this._NgaySinh = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DiaChi", DbType="NVarChar(250)")]
+		public string DiaChi
+		{
+			get
+			{
+				return this._DiaChi;
+			}
+			set
+			{
+				if ((this._DiaChi != value))
+				{
+					this._DiaChi = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DienThoai", DbType="VarChar(15)")]
+		public string DienThoai
+		{
+			get
+			{
+				return this._DienThoai;
+			}
+			set
+			{
+				if ((this._DienThoai != value))
+				{
+					this._DienThoai = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="VarChar(50)")]
+		public string Email
+		{
+			get
+			{
+				return this._Email;
+			}
+			set
+			{
+				if ((this._Email != value))
+				{
+					this._Email = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaSinhVien1", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
+		public string MaSinhVien1
+		{
+			get
+			{
+				return this._MaSinhVien1;
+			}
+			set
+			{
+				if ((this._MaSinhVien1 != value))
+				{
+					this._MaSinhVien1 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LanHoc", DbType="Int")]
+		public System.Nullable<int> LanHoc
+		{
+			get
+			{
+				return this._LanHoc;
+			}
+			set
+			{
+				if ((this._LanHoc != value))
+				{
+					this._LanHoc = value;
 				}
 			}
 		}
