@@ -62,6 +62,7 @@ namespace QuanLyDiemDaiHoc
             if (cbKhoa.SelectedValue != null && cbCTDT.SelectedValue != null && !string.IsNullOrEmpty(cbKhoas.Text))
             {
                 var lops = db.Lops_By(cbKhoa.SelectedValue.ToString(), cbCTDT.SelectedValue.ToString(), cbKhoas.Text).ToList();
+                this.cbCTDT.DataSource = db.ChuongTrinhDaoTaos.Where(c => c.MaKhoa == cbKhoa.SelectedValue.ToString());
                 if (lops != null && lops.Any())
                 {
                     BindingSource lopBinding = new BindingSource();

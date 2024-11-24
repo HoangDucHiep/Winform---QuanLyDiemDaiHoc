@@ -333,4 +333,18 @@
     <Parameter Name="maLopHP" Type="System.String" DbType="NVarChar(30)" />
     <Return Type="System.Int32" />
   </Function>
+  <Function Name="dbo.Khoa_Insert" Method="Khoa_Insert">
+    <Parameter Name="maKhoa" Type="System.String" DbType="NVarChar(10)" />
+    <Parameter Name="tenKhoa" Type="System.String" DbType="NVarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Khoa_Update" Method="Khoa_Update">
+    <Parameter Name="maKhoa" Type="System.String" DbType="NVarChar(10)" />
+    <Parameter Name="tenKhoa" Type="System.String" DbType="NVarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Khoa_Delete" Method="Khoa_Delete">
+    <Parameter Name="maKhoa" Type="System.String" DbType="NVarChar(10)" />
+    <Return Type="System.Int32" />
+  </Function>
 </Database>

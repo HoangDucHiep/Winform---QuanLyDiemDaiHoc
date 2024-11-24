@@ -47,6 +47,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmKhoa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmKhoa.Designer.cs">
+      <DependentUpon>frmKhoa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmKhoa_CTDT.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmKhoa_CTDT.Designer.cs">
+      <DependentUpon>frmKhoa_CTDT.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmLopHP.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -83,6 +95,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>QuanLyDiemTruongDaiHocDataSet.xsd</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="frmKhoa.resx">
+      <DependentUpon>frmKhoa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmKhoa_CTDT.resx">
+      <DependentUpon>frmKhoa_CTDT.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmLopHP.resx">
       <DependentUpon>frmLopHP.cs</DependentUpon>
     </EmbeddedResource>
