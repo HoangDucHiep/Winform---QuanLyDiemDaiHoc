@@ -387,4 +387,20 @@
     <Parameter Name="trongSoThi" Type="System.Double" DbType="Float" />
     <Return Type="System.Int32" />
   </Function>
+  <Function Name="dbo.CTDT_Delete" Method="CTDT_Delete">
+    <Parameter Name="maCTDT" Type="System.String" DbType="NVarChar(20)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.CTDT_Insert" Method="CTDT_Insert">
+    <Parameter Name="maCTDT" Type="System.String" DbType="NVarChar(20)" />
+    <Parameter Name="tenCTDT" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="maKhoa" Type="System.String" DbType="NVarChar(10)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.CTDT_Update" Method="CTDT_Update">
+    <Parameter Name="maCTDT" Type="System.String" DbType="NVarChar(20)" />
+    <Parameter Name="tenCTDT" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="maKhoa" Type="System.String" DbType="NVarChar(10)" />
+    <Return Type="System.Int32" />
+  </Function>
 </Database>

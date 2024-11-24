@@ -367,6 +367,27 @@ namespace QuanLyDiemDaiHoc
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), maHP, tenHP, maMon, soTC, trongSoQT, trongSoThi);
 			return ((int)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.CTDT_Delete")]
+		public int CTDT_Delete([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(20)")] string maCTDT)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), maCTDT);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.CTDT_Insert")]
+		public int CTDT_Insert([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(20)")] string maCTDT, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(100)")] string tenCTDT, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(10)")] string maKhoa)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), maCTDT, tenCTDT, maKhoa);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.CTDT_Update")]
+		public int CTDT_Update([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(20)")] string maCTDT, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(100)")] string tenCTDT, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(10)")] string maKhoa)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), maCTDT, tenCTDT, maKhoa);
+			return ((int)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.BoMon")]

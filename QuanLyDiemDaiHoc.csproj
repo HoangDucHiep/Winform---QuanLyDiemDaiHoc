@@ -101,6 +101,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>QuanLyDiemTruongDaiHocDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Utilities\CTDT_HocPhan.cs" />
     <EmbeddedResource Include="frmKhoa.resx">
       <DependentUpon>frmKhoa.cs</DependentUpon>
     </EmbeddedResource>
