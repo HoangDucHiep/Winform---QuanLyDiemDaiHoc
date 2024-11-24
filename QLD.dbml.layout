@@ -104,7 +104,7 @@
         <classShapeMoniker Id="4f62c109-cfbb-46eb-bea1-934218c9ee68" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(1.48437375 : 5.875); (1.48437375 : 3.69314697265625); (2.19791916666667 : 3.69314697265625 : JumpStart); (2.36458583333333 : 3.69314697265625 : JumpEnd); (4 : 3.69314697265625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(1.48437375 : 5.875); (1.48437375 : 3.69314697265625); (4 : 3.69314697265625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/QLDDataContext/Khoa/Khoa_ChuongTrinhDaoTao" />
       <nodes>
         <classShapeMoniker Id="1fedaaa9-5398-45e8-8867-b1e7ba1cdf17" />

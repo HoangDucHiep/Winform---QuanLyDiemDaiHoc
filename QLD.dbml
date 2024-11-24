@@ -320,4 +320,17 @@
     <Parameter Name="hocKy" Type="System.String" DbType="NVarChar(10)" />
     <Return Type="System.Int32" />
   </Function>
+  <Function Name="dbo.LopHP_Update" Method="LopHP_Update">
+    <Parameter Name="maHP" Type="System.String" DbType="NVarChar(20)" />
+    <Parameter Name="maLopHP" Type="System.String" DbType="NVarChar(30)" />
+    <Parameter Name="tenLopHP" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="maGV" Type="System.String" DbType="NVarChar(10)" />
+    <Parameter Name="namHoc" Type="System.String" DbType="NVarChar(20)" />
+    <Parameter Name="hocKy" Type="System.String" DbType="NVarChar(10)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.LopHP_Delete" Method="LopHP_Delete">
+    <Parameter Name="maLopHP" Type="System.String" DbType="NVarChar(30)" />
+    <Return Type="System.Int32" />
+  </Function>
 </Database>

@@ -67,8 +67,6 @@
             this.cbKhoas = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.quanLyDiemTruongDaiHocDataSet1 = new QuanLyDiemDaiHoc.QuanLyDiemTruongDaiHocDataSet();
             this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel11 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel12 = new System.Windows.Forms.TableLayoutPanel();
@@ -79,6 +77,8 @@
             this.tableLayoutPanel13 = new System.Windows.Forms.TableLayoutPanel();
             this.label5 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.quanLyDiemTruongDaiHocDataSet1 = new QuanLyDiemDaiHoc.QuanLyDiemTruongDaiHocDataSet();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -89,13 +89,13 @@
             this.groupBox1.SuspendLayout();
             this.tableLayoutPanel8.SuspendLayout();
             this.tableLayoutPanel9.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.quanLyDiemTruongDaiHocDataSet1)).BeginInit();
             this.tableLayoutPanel10.SuspendLayout();
             this.tableLayoutPanel11.SuspendLayout();
             this.tableLayoutPanel12.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAllSV)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSelectedSV)).BeginInit();
             this.tableLayoutPanel13.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.quanLyDiemTruongDaiHocDataSet1)).BeginInit();
             this.SuspendLayout();
             // 
             // textBox3
@@ -187,6 +187,7 @@
             this.cbHP.Size = new System.Drawing.Size(300, 28);
             this.cbHP.TabIndex = 10;
             this.cbHP.SelectedIndexChanged += new System.EventHandler(this.cbHP_SelectedIndexChanged);
+            this.cbHP.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cantType);
             // 
             // cbCTDT
             // 
@@ -198,6 +199,7 @@
             this.cbCTDT.Size = new System.Drawing.Size(294, 28);
             this.cbCTDT.TabIndex = 8;
             this.cbCTDT.SelectedIndexChanged += new System.EventHandler(this.cbCTDT_SelectedIndexChanged);
+            this.cbCTDT.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cantType);
             // 
             // label7
             // 
@@ -256,6 +258,7 @@
             this.cbKhoa.Size = new System.Drawing.Size(347, 28);
             this.cbKhoa.TabIndex = 6;
             this.cbKhoa.SelectedIndexChanged += new System.EventHandler(this.cbKhoa_SelectedIndexChanged);
+            this.cbKhoa.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cantType);
             // 
             // tableLayoutPanel4
             // 
@@ -306,6 +309,7 @@
             this.txtBoxTenLopHP.Name = "txtBoxTenLopHP";
             this.txtBoxTenLopHP.Size = new System.Drawing.Size(252, 26);
             this.txtBoxTenLopHP.TabIndex = 14;
+            this.txtBoxTenLopHP.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxLopHP);
             // 
             // cbLopHp
             // 
@@ -317,6 +321,7 @@
             this.cbLopHp.Size = new System.Drawing.Size(343, 28);
             this.cbLopHp.TabIndex = 10;
             this.cbLopHp.SelectedIndexChanged += new System.EventHandler(this.cbLopHp_SelectedIndexChanged);
+            this.cbLopHp.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cantType);
             // 
             // label12
             // 
@@ -362,6 +367,7 @@
             this.txtBoxMaLopHP.Name = "txtBoxMaLopHP";
             this.txtBoxMaLopHP.Size = new System.Drawing.Size(215, 26);
             this.txtBoxMaLopHP.TabIndex = 11;
+            this.txtBoxMaLopHP.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxLopHP);
             // 
             // tableLayoutPanel6
             // 
@@ -403,6 +409,7 @@
             this.btnSaveLopHP.TabIndex = 8;
             this.btnSaveLopHP.Text = "Lưu";
             this.btnSaveLopHP.UseVisualStyleBackColor = true;
+            this.btnSaveLopHP.Click += new System.EventHandler(this.btnSaveLopHP_Click);
             // 
             // btnAddLopHP
             // 
@@ -448,6 +455,7 @@
             this.txtBoxHocKy.Name = "txtBoxHocKy";
             this.txtBoxHocKy.Size = new System.Drawing.Size(200, 26);
             this.txtBoxHocKy.TabIndex = 16;
+            this.txtBoxHocKy.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxLopHP);
             // 
             // txtBoxNamHoc
             // 
@@ -457,6 +465,7 @@
             this.txtBoxNamHoc.Name = "txtBoxNamHoc";
             this.txtBoxNamHoc.Size = new System.Drawing.Size(266, 26);
             this.txtBoxNamHoc.TabIndex = 14;
+            this.txtBoxNamHoc.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxLopHP);
             // 
             // cbGiangVien
             // 
@@ -467,6 +476,10 @@
             this.cbGiangVien.Name = "cbGiangVien";
             this.cbGiangVien.Size = new System.Drawing.Size(344, 28);
             this.cbGiangVien.TabIndex = 12;
+            this.cbGiangVien.SelectedIndexChanged += new System.EventHandler(this.cbGiangVien_SelectedIndexChanged);
+            this.cbGiangVien.MouseEnter += new System.EventHandler(this.cbGiangVien_MouseEnter);
+            this.cbGiangVien.MouseLeave += new System.EventHandler(this.cbGiangVien_MouseLeave);
+            this.cbGiangVien.MouseHover += new System.EventHandler(this.cbGiangVien_MouseEnter);
             // 
             // label15
             // 
@@ -610,11 +623,6 @@
             this.label3.Text = "Khóa học";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // quanLyDiemTruongDaiHocDataSet1
-            // 
-            this.quanLyDiemTruongDaiHocDataSet1.DataSetName = "QuanLyDiemTruongDaiHocDataSet";
-            this.quanLyDiemTruongDaiHocDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // tableLayoutPanel10
             // 
             this.tableLayoutPanel10.ColumnCount = 1;
@@ -644,7 +652,7 @@
             this.tableLayoutPanel11.Name = "tableLayoutPanel11";
             this.tableLayoutPanel11.RowCount = 1;
             this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 476F));
+            this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 441F));
             this.tableLayoutPanel11.Size = new System.Drawing.Size(1174, 441);
             this.tableLayoutPanel11.TabIndex = 2;
             // 
@@ -679,6 +687,7 @@
             this.btnAddSV.TabIndex = 0;
             this.btnAddSV.Text = "Thêm";
             this.btnAddSV.UseVisualStyleBackColor = true;
+            this.btnAddSV.Click += new System.EventHandler(this.btnAddSV_Click);
             // 
             // btnRemoveSV
             // 
@@ -689,6 +698,7 @@
             this.btnRemoveSV.TabIndex = 1;
             this.btnRemoveSV.Text = "Xóa";
             this.btnRemoveSV.UseVisualStyleBackColor = true;
+            this.btnRemoveSV.Click += new System.EventHandler(this.btnRemoveSV_Click);
             // 
             // dgvAllSV
             // 
@@ -756,6 +766,11 @@
             this.label16.Text = "Danh sách sinh viên đã tham gia lớp";
             this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // quanLyDiemTruongDaiHocDataSet1
+            // 
+            this.quanLyDiemTruongDaiHocDataSet1.DataSetName = "QuanLyDiemTruongDaiHocDataSet";
+            this.quanLyDiemTruongDaiHocDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // frmLopHP
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -782,7 +797,6 @@
             this.tableLayoutPanel8.ResumeLayout(false);
             this.tableLayoutPanel9.ResumeLayout(false);
             this.tableLayoutPanel9.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.quanLyDiemTruongDaiHocDataSet1)).EndInit();
             this.tableLayoutPanel10.ResumeLayout(false);
             this.tableLayoutPanel11.ResumeLayout(false);
             this.tableLayoutPanel12.ResumeLayout(false);
@@ -790,6 +804,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvSelectedSV)).EndInit();
             this.tableLayoutPanel13.ResumeLayout(false);
             this.tableLayoutPanel13.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.quanLyDiemTruongDaiHocDataSet1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

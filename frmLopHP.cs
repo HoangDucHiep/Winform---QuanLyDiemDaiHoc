@@ -214,7 +214,7 @@ namespace QuanLyDiemDaiHoc
 
         private void UpdateListSelectedSV()
         {
-            if (cbKhoa.SelectedValue == null || cbCTDT.SelectedValue == null || cbKhoas.SelectedValue == null)
+            if (cbLopHp.SelectedValue == null || cbKhoa.SelectedValue == null || cbCTDT.SelectedValue == null || cbKhoas.SelectedValue == null)
             {
                 dgvSelectedSV.DataSource = null;
                 return;
@@ -308,15 +308,35 @@ namespace QuanLyDiemDaiHoc
             txtBoxTenLopHP.Text = string.Empty;
             txtBoxNamHoc.Text = string.Empty;
             txtBoxHocKy.Text = string.Empty;
+
+            txtBoxMaLopHP.DataBindings.Clear();
+            txtBoxTenLopHP.DataBindings.Clear();
+            txtBoxNamHoc.DataBindings.Clear();
+            txtBoxHocKy.DataBindings.Clear();
+
+
             cbGiangVien.SelectedIndex = -1;
 
             btnXoaLopHP.Text = "Hủy";
             btnAddLopHP.Enabled = false;
         }
 
+        bool updateLopHP = false;
+        private void txtBoxLopHP(object sender, KeyPressEventArgs e)
+        {
+            toggleBtnXoa();
+        }
+
+        private void toggleBtnXoa()
+        {
+            btnAddLopHP.Enabled = false;
+            updateLopHP = true;
+            btnXoaLopHP.Text = "Hủy";
+        }
+
         private void btnXoaLopHP_Click(object sender, EventArgs e)
         {
-            if (adHP)
+            if (adHP || updateLopHP)
             {
                 adHP = false;
                 btnAddLopHP.Enabled = true;
@@ -327,10 +347,93 @@ namespace QuanLyDiemDaiHoc
             else
             {
                 if (cbLopHp.SelectedValue == null) return;
+                if (MessageBox.Show("Bạn có chắc chắn muốn xóa lớp học phần này?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                {
+                    return;
+                }
                 var maLopHocPhan = cbLopHp.SelectedValue.ToString();
-                var maHP = cbHP.SelectedValue.ToString();
+                db.LopHP_Delete(maLopHocPhan);
                 UpdateLopHP();
             }
+        }
+
+
+        private void btnSaveLopHP_Click(object sender, EventArgs e)
+        {
+            if (adHP)
+            {
+                if (txtBoxMaLopHP.Text == string.Empty || txtBoxTenLopHP.Text == string.Empty || txtBoxNamHoc.Text == string.Empty || txtBoxHocKy.Text == string.Empty || cbGiangVien.SelectedValue == null)
+                {
+                    MessageBox.Show("Hãy nhập đủ thông tin", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                adHP = false;
+                btnAddLopHP.Enabled = true;
+                cbLopHp.Enabled = true;
+                btnXoaLopHP.Text = "Xóa";
+
+                db.LopHP_Insert(
+                    cbHP.SelectedValue.ToString(),
+                    txtBoxMaLopHP.Text,
+                    txtBoxTenLopHP.Text,
+                    cbGiangVien.SelectedValue.ToString(),
+                    txtBoxNamHoc.Text,
+                    txtBoxHocKy.Text
+                );
+
+                UpdateLopHP();
+            }
+
+            if (updateLopHP)
+            {
+                if (txtBoxMaLopHP.Text == string.Empty || txtBoxTenLopHP.Text == string.Empty || txtBoxNamHoc.Text == string.Empty || txtBoxHocKy.Text == string.Empty || cbGiangVien.SelectedValue == null)
+                {
+                    MessageBox.Show("Hãy nhập đủ thông tin", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                updateLopHP = false;
+                btnAddLopHP.Enabled = true;
+                cbLopHp.Enabled = true;
+                btnXoaLopHP.Text = "Xóa";
+                db.LopHP_Update(cbHP.SelectedValue.ToString(),
+                    txtBoxMaLopHP.Text,
+                    txtBoxTenLopHP.Text,
+                    cbGiangVien.SelectedValue.ToString(),
+                    txtBoxNamHoc.Text,
+                    txtBoxHocKy.Text);
+                UpdateLopHP();
+
+            }
+        }
+
+        private void cbGiangVien_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (click)
+            {
+                toggleBtnXoa();
+            }
+        }
+
+        bool click = false;
+        private void cbGiangVien_Click(object sender, EventArgs e)
+        {
+            click = true;
+        }
+
+        private void cbGiangVien_MouseEnter(object sender, EventArgs e)
+        {
+            click = true;
+        }
+
+        private void cbGiangVien_MouseLeave(object sender, EventArgs e)
+        {
+            click = false;
+        }
+
+
+        private void cantType(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
         }
     }
 
@@ -345,4 +448,5 @@ namespace QuanLyDiemDaiHoc
             get { return $"{HoDem} {Ten} - {MaGiangVien}"; }
         }
     }
+
 }

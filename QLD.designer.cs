@@ -290,6 +290,20 @@ namespace QuanLyDiemDaiHoc
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), maHP, maLopHP, tenLopHP, maGV, namHoc, hocKy);
 			return ((int)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.LopHP_Update")]
+		public int LopHP_Update([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(20)")] string maHP, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(30)")] string maLopHP, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(100)")] string tenLopHP, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(10)")] string maGV, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(20)")] string namHoc, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(10)")] string hocKy)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), maHP, maLopHP, tenLopHP, maGV, namHoc, hocKy);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.LopHP_Delete")]
+		public int LopHP_Delete([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(30)")] string maLopHP)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), maLopHP);
+			return ((int)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.BoMon")]
