@@ -16,7 +16,7 @@ namespace QuanLyDiemDaiHoc
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmKhoa_CTDT());
+            Application.Run(new frmMain());
         }
     }
 }

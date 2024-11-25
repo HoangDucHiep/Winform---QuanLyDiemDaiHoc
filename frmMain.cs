@@ -47,5 +47,11 @@ namespace QuanLyDiemDaiHoc
             frmKhoaBoMonHP frmKhoaBoMonHP = new frmKhoaBoMonHP();
             frmKhoaBoMonHP.ShowDialog();
         }
+
+        private void quảnLýCTDTToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmKhoa_CTDT frmKhoa_CTDT = new frmKhoa_CTDT();
+            frmKhoa_CTDT.ShowDialog();
+        }
     }
 }

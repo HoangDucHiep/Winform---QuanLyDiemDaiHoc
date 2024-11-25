@@ -147,6 +147,7 @@
             this.cbCTDT.Size = new System.Drawing.Size(308, 28);
             this.cbCTDT.TabIndex = 6;
             this.cbCTDT.SelectedIndexChanged += new System.EventHandler(this.cbCTDT_SelectedIndexChanged);
+            this.cbCTDT.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cantType);
             // 
             // label3
             // 
@@ -182,6 +183,7 @@
             this.cbKhoa.Size = new System.Drawing.Size(302, 28);
             this.cbKhoa.TabIndex = 3;
             this.cbKhoa.SelectedIndexChanged += new System.EventHandler(this.cbKhoa_SelectedIndexChanged);
+            this.cbKhoa.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cantType);
             // 
             // tableLayoutPanel4
             // 
@@ -360,6 +362,7 @@
             this.btnDeleteHP.TabIndex = 28;
             this.btnDeleteHP.Text = "Xóa";
             this.btnDeleteHP.UseVisualStyleBackColor = true;
+            this.btnDeleteHP.Click += new System.EventHandler(this.btnDeleteHP_Click);
             // 
             // btnSaveHP
             // 
@@ -372,6 +375,7 @@
             this.btnSaveHP.TabIndex = 26;
             this.btnSaveHP.Text = "Lưu";
             this.btnSaveHP.UseVisualStyleBackColor = true;
+            this.btnSaveHP.Click += new System.EventHandler(this.btnSaveHP_Click);
             // 
             // btnAddHP
             // 
@@ -383,6 +387,7 @@
             this.btnAddHP.TabIndex = 24;
             this.btnAddHP.Text = "Thêm";
             this.btnAddHP.UseVisualStyleBackColor = true;
+            this.btnAddHP.Click += new System.EventHandler(this.btnAddHP_Click);
             // 
             // txtBoxHK
             // 
@@ -392,6 +397,8 @@
             this.txtBoxHK.Name = "txtBoxHK";
             this.txtBoxHK.Size = new System.Drawing.Size(142, 26);
             this.txtBoxHK.TabIndex = 22;
+            this.txtBoxHK.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBoxHK_KeyDown);
+            this.txtBoxHK.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxHK_KeyPress);
             // 
             // label10
             // 
@@ -408,12 +415,14 @@
             // cbHp
             // 
             this.cbHp.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cbHp.Enabled = false;
             this.cbHp.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbHp.FormattingEnabled = true;
             this.cbHp.Location = new System.Drawing.Point(275, 35);
             this.cbHp.Name = "cbHp";
             this.cbHp.Size = new System.Drawing.Size(271, 28);
             this.cbHp.TabIndex = 6;
+            this.cbHp.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cantType);
             // 
             // label5
             // 
@@ -442,6 +451,7 @@
             // cbMon
             // 
             this.cbMon.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cbMon.Enabled = false;
             this.cbMon.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbMon.FormattingEnabled = true;
             this.cbMon.Location = new System.Drawing.Point(3, 35);
@@ -449,6 +459,7 @@
             this.cbMon.Size = new System.Drawing.Size(220, 28);
             this.cbMon.TabIndex = 3;
             this.cbMon.SelectedIndexChanged += new System.EventHandler(this.cbMon_SelectedIndexChanged);
+            this.cbMon.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cantType);
             // 
             // dgvHP
             // 
@@ -465,7 +476,7 @@
             this.dgvHP.RowTemplate.Height = 24;
             this.dgvHP.Size = new System.Drawing.Size(1229, 448);
             this.dgvHP.TabIndex = 2;
-            this.dgvHP.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvHP_CellContentClick);
+            this.dgvHP.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvHP_CellContentClick);
             // 
             // contextMenuStrip1
             // 
