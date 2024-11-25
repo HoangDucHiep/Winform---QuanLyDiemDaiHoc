@@ -51,6 +51,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmChiTietSV.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmChiTietSV.Designer.cs">
+      <DependentUpon>frmChiTietSV.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmDangNhap.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -121,6 +127,9 @@
     <Compile Include="Utilities\EmailGenerator.cs" />
     <Compile Include="Utilities\IdGenerator.cs" />
     <Compile Include="Utilities\PasswordHasher.cs" />
+    <EmbeddedResource Include="frmChiTietSV.resx">
+      <DependentUpon>frmChiTietSV.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmDangNhap.resx">
       <DependentUpon>FrmDangNhap.cs</DependentUpon>
     </EmbeddedResource>

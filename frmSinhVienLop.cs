@@ -4,9 +4,9 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.Linq;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace QuanLyDiemDaiHoc
@@ -14,18 +14,80 @@ namespace QuanLyDiemDaiHoc
     public partial class frmSinhVienLop : Form
     {
         private QLDDataContext db = new QLDDataContext();
+        private CultureInfo culture = new CultureInfo("vi-VN");
+        private List<SinhVien> sinhVienToDelete = new List<SinhVien>();
+
         public frmSinhVienLop()
         {
             InitializeComponent();
+            // Đăng ký các sự kiện
+            dgvSV.UserAddedRow += dgvSV_UserAddedRow;
+            dgvSV.DataError += dgvSV_DataError;
+            dgvSV.CellParsing += dgvSV_CellParsing;
+            dgvSV.CellFormatting += dgvSV_CellFormatting;
+            dgvSV.UserDeletingRow += dgvSV_UserDeletingRow;
+            dgvSV.DefaultValuesNeeded += dgvSV_DefaultValuesNeeded; // Thêm sự kiện này
+            dgvSV.CellValueChanged += dgvSV_CellValueChanged; // Thêm sự kiện này
+            dgvSV.CellValidating += dgvSV_CellValidating; // Thêm sự kiện này
+        }
+
+
+        private void dgvSV_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        {
+            var columnName = dgvSV.Columns[e.ColumnIndex].Name;
+            var cellValue = e.FormattedValue?.ToString().Trim();
+
+            // Kiểm tra các cột bắt buộc
+            if (columnName == "HoDem" || columnName == "Ten" || columnName == "NgaySinh" || columnName == "DiaChi" || columnName == "DienThoai" || columnName == "Email")
+            {
+                if (string.IsNullOrEmpty(cellValue))
+                {
+                    MessageBox.Show(Text = "Dữ liệu không được để trống.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);        
+                    e.Cancel = true;
+                }
+            }
+
+            // Kiểm tra cột số điện thoại chỉ chứa số
+            if (columnName == "DienThoai")
+            {
+                if (!long.TryParse(cellValue, out _))
+                {
+                    MessageBox.Show("Số điện thoại chỉ chứa số.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    e.Cancel = true;
+                }
+            }
+        }
+
+        private void dgvSV_DefaultValuesNeeded(object sender, DataGridViewRowEventArgs e)
+        {
+            e.Row.Cells["MaSinhVien"].Value = Utilities.IdGenerator.GetSvID();
+        }
+
+        private void dgvSV_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && (dgvSV.Columns[e.ColumnIndex].Name == "HoDem" || dgvSV.Columns[e.ColumnIndex].Name == "Ten"))
+            {
+                var row = dgvSV.Rows[e.RowIndex];
+                string hoDem = row.Cells["HoDem"].Value?.ToString();
+                string ten = row.Cells["Ten"].Value?.ToString();
+                string maSinhVien = row.Cells["MaSinhVien"].Value?.ToString();
+
+                if (!string.IsNullOrEmpty(hoDem) && !string.IsNullOrEmpty(ten) && !string.IsNullOrEmpty(maSinhVien))
+                {
+                    string fullName = $"{hoDem} {ten}";
+                    string email = Utilities.EmailGenerator.GenerateEmail(fullName, maSinhVien, "utc");
+                    row.Cells["Email"].Value = email;
+                }
+            }
         }
 
         private void frmSinhVienLop_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'quanLyDiemTruongDaiHocDataSet.SinhVien' table. You can move, or remove it, as needed.
+            // Tải dữ liệu vào combobox Khoa
             var khoas = db.Khoas.ToList();
-            this.cbKhoa.DataSource = khoas;
-            this.cbKhoa.DisplayMember = "TenKhoa";
-            this.cbKhoa.ValueMember = "MaKhoa";
+            cbKhoa.DataSource = khoas;
+            cbKhoa.DisplayMember = "TenKhoa";
+            cbKhoa.ValueMember = "MaKhoa";
 
             updateCTDT();
         }
@@ -33,7 +95,7 @@ namespace QuanLyDiemDaiHoc
         private void updateCTDT()
         {
             var ctdt = db.ChuongTrinhDaoTaos.Where(c => c.MaKhoa == cbKhoa.SelectedValue.ToString()).ToList();
-            if (ctdt.Count() == 0)
+            if (ctdt.Count == 0)
             {
                 cbCTDT.DataSource = null;
                 cbCTDT.Text = string.Empty;
@@ -41,10 +103,8 @@ namespace QuanLyDiemDaiHoc
             else
             {
                 cbCTDT.DataSource = ctdt;
-
-                this.cbCTDT.DataSource = db.ChuongTrinhDaoTaos.Where(c => c.MaKhoa == cbKhoa.SelectedValue.ToString());
-                this.cbCTDT.DisplayMember = "TenCTDT";
-                this.cbCTDT.ValueMember = "MaCTDT";
+                cbCTDT.DisplayMember = "TenCTDT";
+                cbCTDT.ValueMember = "MaCTDT";
             }
             updateKhoaHoc();
             updateLops();
@@ -59,9 +119,13 @@ namespace QuanLyDiemDaiHoc
             }
             else
             {
-                var khoas = db.Lops.Where(s => s.MaKhoa == cbKhoa.SelectedValue.ToString() && s.MaCTDT == cbCTDT.SelectedValue.ToString()).Select(l => l.KhoaHoc).Distinct();
+                var khoas = db.Lops
+                    .Where(s => s.MaKhoa == cbKhoa.SelectedValue.ToString() && s.MaCTDT == cbCTDT.SelectedValue.ToString())
+                    .Select(l => l.KhoaHoc)
+                    .Distinct()
+                    .ToList();
 
-                if (khoas.Count() == 0)
+                if (khoas.Count == 0)
                 {
                     cbKhoas.DataSource = null;
                     cbKhoas.Text = string.Empty;
@@ -82,29 +146,22 @@ namespace QuanLyDiemDaiHoc
                 cbLop.Text = string.Empty;
                 return;
             }
+
             string khoa = cbKhoa.SelectedValue.ToString();
             string ctdt = cbCTDT.SelectedValue.ToString();
             string khoahoc = cbKhoas.Text;
 
-            if (string.IsNullOrEmpty(khoa) || string.IsNullOrEmpty(ctdt) || string.IsNullOrEmpty(khoahoc))
+            var lops = db.Lops.Where(l => l.MaKhoa == khoa && l.MaCTDT == ctdt && l.KhoaHoc == khoahoc).ToList();
+            if (lops.Count == 0)
             {
                 cbLop.DataSource = null;
                 cbLop.Text = "";
             }
             else
             {
-                var lops = db.Lops.Where(l => l.MaKhoa == khoa && l.MaCTDT == ctdt && l.KhoaHoc == khoahoc).ToList();
-                if (lops.Count() == 0)
-                {
-                    cbLop.DataSource = null;
-                    cbLop.Text = "";
-                }
-                else
-                {
-                    cbLop.DataSource = lops;
-                    cbLop.DisplayMember = "TenLop";
-                    cbLop.ValueMember = "MaLop";
-                }
+                cbLop.DataSource = lops;
+                cbLop.DisplayMember = "TenLop";
+                cbLop.ValueMember = "MaLop";
             }
         }
 
@@ -142,7 +199,7 @@ namespace QuanLyDiemDaiHoc
         bool lopUpdate = false;
         private void btnLuuLop_Click(object sender, EventArgs e)
         {
-            if (adLop == true)
+            if (adLop)
             {
                 db.Lops_Insert(txtBoxMaLop.Text, txtBoxTenLop.Text, cbKhoa.SelectedValue.ToString(), cbCTDT.SelectedValue.ToString(), cbKhoas.Text);
                 adLop = false;
@@ -156,7 +213,7 @@ namespace QuanLyDiemDaiHoc
                 updateLops();
             }
 
-            if (lopUpdate == true)
+            if (lopUpdate)
             {
                 lopUpdate = false;
                 btnAddLop.Enabled = true;
@@ -170,9 +227,10 @@ namespace QuanLyDiemDaiHoc
 
         private void btnXoaHuy_Click(object sender, EventArgs e)
         {
-            if (adLop == true || lopUpdate == true)
+            if (adLop || lopUpdate)
             {
                 adLop = false;
+                lopUpdate = false;
                 txtBoxMaLop.Enabled = false;
                 cbLop.Enabled = true;
                 btnAddLop.Enabled = true;
@@ -180,15 +238,20 @@ namespace QuanLyDiemDaiHoc
             }
             else
             {
-                MessageBox.Show("Bạn có chắc muốn xóa lớp không, chỉ lớp chưa có sinh viên mới có thể xóa", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                try
+                var result = MessageBox.Show("Bạn có chắc muốn xóa lớp không? Chỉ lớp chưa có sinh viên mới có thể xóa.", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
                 {
-                    db.Lops_Delete(txtBoxMaLop.Text);
-                    MessageBox.Show("Xóa lớp thành công", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Không thể xóa lớp này, lớp này đã có sinh viên", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    try
+                    {
+                        db.Lops_Delete(txtBoxMaLop.Text);
+                        MessageBox.Show("Xóa lớp thành công", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        updateKhoaHoc();
+                        updateLops();
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("Không thể xóa lớp này, lớp này đã có sinh viên", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
         }
@@ -207,6 +270,7 @@ namespace QuanLyDiemDaiHoc
 
         private void dgvSV_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            // Xử lý khi người dùng click vào ô trong DataGridView (nếu cần)
         }
 
         private void cbLop_SelectedIndexChanged(object sender, EventArgs e)
@@ -251,57 +315,164 @@ namespace QuanLyDiemDaiHoc
             dgvSV.Columns["MaLop"].Visible = false;
             dgvSV.Columns["Lop"].Visible = false;
 
-            // Set the date format for the "NgaySinh" column
+            // Định dạng ngày tháng cho cột "NgaySinh"
             dgvSV.Columns["NgaySinh"].DefaultCellStyle.Format = "dd/MM/yyyy";
+            dgvSV.Columns["NgaySinh"].DefaultCellStyle.FormatProvider = culture;
 
-            dgvSV.AllowUserToAddRows = true; // Allow adding new rows
+            dgvSV.AllowUserToAddRows = true; // Cho phép thêm hàng mới
+
+            // Đặt cột "MaSinhVien" thành ReadOnly
+            dgvSV.Columns["MaSinhVien"].ReadOnly = true;
+            dgvSV.Columns["Email"].ReadOnly = true;
         }
-
 
         private void dgvSV_UserAddedRow(object sender, DataGridViewRowEventArgs e)
         {
-            // Xử lý sự kiện khi người dùng thêm hàng mới
-            var newRow = e.Row;
-            if (newRow != null && newRow.Index >= 0 && newRow.Index < dgvSV.Rows.Count - 1)
-            {
-                var sinhVien = new SinhVien
-                {
-                    MaSinhVien = newRow.Cells["MaSinhVien"].Value?.ToString(),
-                    HoDem = newRow.Cells["HoDem"].Value?.ToString(),
-                    Ten = newRow.Cells["Ten"].Value?.ToString(),
-                    NgaySinh = DateTime.TryParse(newRow.Cells["NgaySinh"].Value?.ToString(), out DateTime ngaySinh) ? ngaySinh : (DateTime?)null,
-                    DiaChi = newRow.Cells["DiaChi"].Value?.ToString(),
-                    DienThoai = newRow.Cells["DienThoai"].Value?.ToString(),
-                    Email = newRow.Cells["Email"].Value?.ToString(),
-                    MaLop = cbLop.SelectedValue.ToString()
-                };
+            // Không cần xử lý thao tác thêm mới ở đây vì chúng ta sẽ xử lý trong btnUpdateData_Click
+        }
 
-                db.SinhViens.InsertOnSubmit(sinhVien);
-                db.SubmitChanges();
+        private void dgvSV_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
+        {
+            // Hiển thị MessageBox xác nhận
+            var result = MessageBox.Show("Bạn có chắc chắn muốn xóa sinh viên này không? Bạn chỉ có thể xóa các sinh viên chưa tham gia lớp học phần nào", "Xác nhận xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.No)
+            {
+                e.Cancel = true; // Hủy bỏ việc xóa nếu người dùng chọn "No"
+                return;
+            }
+
+            // Đánh dấu sinh viên để xóa
+            string maSV = e.Row.Cells["MaSinhVien"].Value?.ToString();
+            var sinhVien = db.SinhViens.SingleOrDefault(s => s.MaSinhVien == maSV);
+            if (sinhVien != null)
+            {
+                sinhVienToDelete.Add(sinhVien);
             }
         }
 
         private void btnUpdateData_Click(object sender, EventArgs e)
         {
-            // Cập nhật dữ liệu từ DataGridView vào cơ sở dữ liệu
-            foreach (DataGridViewRow row in dgvSV.Rows)
+            try
             {
-                if (row.IsNewRow) continue;
-
-                string maSV = row.Cells["MaSinhVien"].Value?.ToString();
-                var sinhVien = db.SinhViens.SingleOrDefault(s => s.MaSinhVien == maSV);
-                if (sinhVien != null)
+                // Xóa sinh viên đã được đánh dấu
+                foreach (var sinhVien in sinhVienToDelete)
                 {
-                    sinhVien.HoDem = row.Cells["HoDem"].Value?.ToString();
-                    sinhVien.Ten = row.Cells["Ten"].Value?.ToString();
-                    sinhVien.NgaySinh = DateTime.TryParse(row.Cells["NgaySinh"].Value?.ToString(), out DateTime ngaySinh) ? ngaySinh : (DateTime?)null;
-                    sinhVien.DiaChi = row.Cells["DiaChi"].Value?.ToString();
-                    sinhVien.DienThoai = row.Cells["DienThoai"].Value?.ToString();
-                    sinhVien.Email = row.Cells["Email"].Value?.ToString();
+                    // Xóa tài khoản tương ứng
+                    var tk = db.TKs.SingleOrDefault(t => t.MaTK == "TK_" + sinhVien.MaSinhVien);
+                    if (tk != null)
+                    {
+                        db.TKs.DeleteOnSubmit(tk);
+                    }
+                    db.SinhViens.DeleteOnSubmit(sinhVien);
+                }
+                sinhVienToDelete.Clear();
+
+                // Cập nhật dữ liệu từ DataGridView vào cơ sở dữ liệu
+                foreach (DataGridViewRow row in dgvSV.Rows)
+                {
+                    if (row.IsNewRow) continue;
+
+                    string maSV = row.Cells["MaSinhVien"].Value?.ToString();
+                    var sinhVien = db.SinhViens.SingleOrDefault(s => s.MaSinhVien == maSV);
+                    if (sinhVien != null)
+                    {
+                        sinhVien.HoDem = row.Cells["HoDem"].Value?.ToString();
+                        sinhVien.Ten = row.Cells["Ten"].Value?.ToString();
+
+                        string ngaySinhStr = row.Cells["NgaySinh"].Value?.ToString().Trim();
+
+                        sinhVien.NgaySinh = DateTime.Parse(ngaySinhStr);
+
+                        sinhVien.DiaChi = row.Cells["DiaChi"].Value?.ToString();
+                        sinhVien.DienThoai = row.Cells["DienThoai"].Value?.ToString();
+                        sinhVien.Email = row.Cells["Email"].Value?.ToString();
+
+                    }
+                    else
+                    {
+                        // Thêm sinh viên mới
+                        var newSinhVien = new SinhVien
+                        {
+                            MaSinhVien = maSV,
+                            HoDem = row.Cells["HoDem"].Value?.ToString(),
+                            Ten = row.Cells["Ten"].Value?.ToString(),
+                            MaLop = cbLop.SelectedValue.ToString(),
+                            DiaChi = row.Cells["DiaChi"].Value?.ToString(),
+                            DienThoai = row.Cells["DienThoai"].Value?.ToString(),
+                            Email = row.Cells["Email"].Value?.ToString(),
+                        };
+
+                        string ngaySinhStr = row.Cells["NgaySinh"].Value?.ToString().Trim();
+                        newSinhVien.NgaySinh = DateTime.Parse(ngaySinhStr);
+
+                        db.SinhViens.InsertOnSubmit(newSinhVien);
+
+                        var newTK = new TK
+                        {
+                            MaTK = "TK_" + maSV,
+                            Email = newSinhVien.Email,
+                            Password = maSV,
+                            MaRole = "sv"
+                        };
+                        db.TKs.InsertOnSubmit(newTK);
+                    }
+                }
+                db.SubmitChanges();
+                MessageBox.Show("Dữ liệu đã được cập nhật thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                updatedgv();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Đã xảy ra lỗi khi cập nhật dữ liệu: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        // Xử lý lỗi dữ liệu trong DataGridView
+        private void dgvSV_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            MessageBox.Show("Dữ liệu nhập không hợp lệ. Vui lòng kiểm tra lại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            e.Cancel = false;
+        }
+
+        // Sự kiện CellParsing để phân tích dữ liệu nhập vào
+        private void dgvSV_CellParsing(object sender, DataGridViewCellParsingEventArgs e)
+        {
+            if (dgvSV.Columns[e.ColumnIndex].Name == "NgaySinh" && e.Value != null)
+            {
+                string ngaySinhStr = e.Value.ToString().Trim();
+
+                if (DateTime.TryParseExact(ngaySinhStr, "dd/MM/yyyy", culture, DateTimeStyles.None, out DateTime ngaySinh))
+                {
+                    e.Value = ngaySinh;
+                    e.ParsingApplied = true;
+                }
+                else
+                {
+                    MessageBox.Show("Ngày sinh không hợp lệ. Vui lòng nhập theo định dạng dd/MM/yyyy.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    e.ParsingApplied = false;
                 }
             }
-            db.SubmitChanges();
-            MessageBox.Show("Dữ liệu đã được cập nhật thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        // Sự kiện CellFormatting để định dạng dữ liệu hiển thị
+        private void dgvSV_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dgvSV.Columns[e.ColumnIndex].Name == "NgaySinh" && e.Value != null)
+            {
+                if (e.Value is DateTime dateValue)
+                {
+                    e.Value = dateValue.ToString("dd/MM/yyyy", culture);
+                    e.FormattingApplied = true;
+                }
+            }
+        }
+
+        private void btnHuy_Click(object sender, EventArgs e)
+        {
+            // ignore changes
+            db = new QLDDataContext();
+            updatedgv();
+
         }
     }
 }

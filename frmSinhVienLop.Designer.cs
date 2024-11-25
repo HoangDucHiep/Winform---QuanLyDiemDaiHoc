@@ -49,21 +49,22 @@
             this.btnXoaHuy = new System.Windows.Forms.Button();
             this.btnLuuLop = new System.Windows.Forms.Button();
             this.btnAddLop = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
+            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnUpdateData = new System.Windows.Forms.Button();
             this.dgvSV = new System.Windows.Forms.DataGridView();
             this.quanLyDiemTruongDaiHocDataSet = new QuanLyDiemDaiHoc.QuanLyDiemTruongDaiHocDataSet();
             this.sinhVienBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.sinhVienTableAdapter = new QuanLyDiemDaiHoc.QuanLyDiemTruongDaiHocDataSetTableAdapters.SinhVienTableAdapter();
-            this.label8 = new System.Windows.Forms.Label();
-            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-            this.btnUpdateData = new System.Windows.Forms.Button();
+            this.btnHuy = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
+            this.tableLayoutPanel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSV)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.quanLyDiemTruongDaiHocDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sinhVienBindingSource)).BeginInit();
-            this.tableLayoutPanel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -335,34 +336,6 @@
             this.btnAddLop.UseVisualStyleBackColor = true;
             this.btnAddLop.Click += new System.EventHandler(this.btnAddLop_Click);
             // 
-            // dgvSV
-            // 
-            this.dgvSV.AllowUserToOrderColumns = true;
-            this.dgvSV.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvSV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvSV.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvSV.Location = new System.Drawing.Point(148, 254);
-            this.dgvSV.Name = "dgvSV";
-            this.dgvSV.RowHeadersWidth = 51;
-            this.dgvSV.RowTemplate.Height = 24;
-            this.dgvSV.Size = new System.Drawing.Size(1154, 617);
-            this.dgvSV.TabIndex = 2;
-            this.dgvSV.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSV_CellClick);
-            // 
-            // quanLyDiemTruongDaiHocDataSet
-            // 
-            this.quanLyDiemTruongDaiHocDataSet.DataSetName = "QuanLyDiemTruongDaiHocDataSet";
-            this.quanLyDiemTruongDaiHocDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // sinhVienBindingSource
-            // 
-            this.sinhVienBindingSource.DataMember = "SinhVien";
-            this.sinhVienBindingSource.DataSource = this.quanLyDiemTruongDaiHocDataSet;
-            // 
-            // sinhVienTableAdapter
-            // 
-            this.sinhVienTableAdapter.ClearBeforeFill = true;
-            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -377,8 +350,10 @@
             // 
             // tableLayoutPanel5
             // 
-            this.tableLayoutPanel5.ColumnCount = 1;
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel5.ColumnCount = 2;
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 67.00681F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 32.9932F));
+            this.tableLayoutPanel5.Controls.Add(this.btnHuy, 1, 1);
             this.tableLayoutPanel5.Controls.Add(this.btnUpdateData, 0, 1);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel5.Location = new System.Drawing.Point(857, 148);
@@ -394,11 +369,51 @@
             this.btnUpdateData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnUpdateData.Location = new System.Drawing.Point(3, 13);
             this.btnUpdateData.Name = "btnUpdateData";
-            this.btnUpdateData.Size = new System.Drawing.Size(288, 42);
+            this.btnUpdateData.Size = new System.Drawing.Size(191, 42);
             this.btnUpdateData.TabIndex = 0;
             this.btnUpdateData.Text = "Cập nhật danh sách sinh viên";
             this.btnUpdateData.UseVisualStyleBackColor = true;
             this.btnUpdateData.Click += new System.EventHandler(this.btnUpdateData_Click);
+            // 
+            // dgvSV
+            // 
+            this.dgvSV.AllowUserToOrderColumns = true;
+            this.dgvSV.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvSV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvSV.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvSV.Location = new System.Drawing.Point(148, 254);
+            this.dgvSV.Name = "dgvSV";
+            this.dgvSV.RowHeadersWidth = 51;
+            this.dgvSV.RowTemplate.Height = 24;
+            this.dgvSV.Size = new System.Drawing.Size(1154, 617);
+            this.dgvSV.TabIndex = 2;
+            this.dgvSV.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSV_CellClick);
+            this.dgvSV.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dgvSV_UserAddedRow);
+            // 
+            // quanLyDiemTruongDaiHocDataSet
+            // 
+            this.quanLyDiemTruongDaiHocDataSet.DataSetName = "QuanLyDiemTruongDaiHocDataSet";
+            this.quanLyDiemTruongDaiHocDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // sinhVienBindingSource
+            // 
+            this.sinhVienBindingSource.DataMember = "SinhVien";
+            this.sinhVienBindingSource.DataSource = this.quanLyDiemTruongDaiHocDataSet;
+            // 
+            // sinhVienTableAdapter
+            // 
+            this.sinhVienTableAdapter.ClearBeforeFill = true;
+            // 
+            // btnHuy
+            // 
+            this.btnHuy.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnHuy.Location = new System.Drawing.Point(200, 13);
+            this.btnHuy.Name = "btnHuy";
+            this.btnHuy.Size = new System.Drawing.Size(91, 42);
+            this.btnHuy.TabIndex = 3;
+            this.btnHuy.Text = "Hủy";
+            this.btnHuy.UseVisualStyleBackColor = true;
+            this.btnHuy.Click += new System.EventHandler(this.btnHuy_Click);
             // 
             // frmSinhVienLop
             // 
@@ -418,10 +433,10 @@
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
             this.tableLayoutPanel4.ResumeLayout(false);
+            this.tableLayoutPanel5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvSV)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.quanLyDiemTruongDaiHocDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sinhVienBindingSource)).EndInit();
-            this.tableLayoutPanel5.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -455,5 +470,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
         private System.Windows.Forms.Button btnUpdateData;
+        private System.Windows.Forms.Button btnHuy;
     }
 }

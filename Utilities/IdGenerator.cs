@@ -23,5 +23,15 @@ namespace QuanLyDiemDaiHoc.Utilities
             return newId;
         }
 
+        public static string GetSvID()
+        {
+            string newId;
+            do
+            {
+                newId = random.Next(100000000, 999999999).ToString();
+            }while (db.SinhViens.Any(sv => sv.MaSinhVien == newId));
+
+            return newId;
+        }
     }
 }
