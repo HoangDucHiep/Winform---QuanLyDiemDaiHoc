@@ -14,6 +14,10 @@ namespace QuanLyDiemDaiHoc
         public frmNhapDiem()
         {
             InitializeComponent();
+            // Thêm sự kiện CellValidating để kiểm tra giá trị nhập vào
+            dgvDiem.CellValidating += dgvDiem_CellValidating;
+            // Thêm sự kiện CellEndEdit để tính toán điểm tổng kết
+            dgvDiem.CellEndEdit += dgvDiem_CellEndEdit;
         }
 
         private QLDDataContext db = new QLDDataContext();
@@ -92,10 +96,7 @@ namespace QuanLyDiemDaiHoc
                 }
             }
 
-            // Thêm sự kiện CellValidating để kiểm tra giá trị nhập vào
-            dgvDiem.CellValidating += dgvDiem_CellValidating;
-            // Thêm sự kiện CellEndEdit để tính toán điểm tổng kết
-            dgvDiem.CellEndEdit += dgvDiem_CellEndEdit;
+
         }
 
         private void dgvDiem_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)

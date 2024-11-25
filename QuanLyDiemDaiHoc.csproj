@@ -125,6 +125,7 @@
     </Compile>
     <Compile Include="Utilities\CTDT_HocPhan.cs" />
     <Compile Include="Utilities\EmailGenerator.cs" />
+    <Compile Include="Utilities\GPAConverter.cs" />
     <Compile Include="Utilities\IdGenerator.cs" />
     <Compile Include="Utilities\PasswordHasher.cs" />
     <EmbeddedResource Include="frmChiTietSV.resx">

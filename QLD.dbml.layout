@@ -131,27 +131,27 @@
         <classShapeMoniker Id="5b99454d-f9a2-460c-b13a-33f95826b053" />
       </nodes>
     </associationConnector>
-    <classShape Id="a812badc-c78c-459e-b89b-9766da0de98c" absoluteBounds="9.375, 8.625, 2, 2.1554996744791666">
+    <classShape Id="a812badc-c78c-459e-b89b-9766da0de98c" absoluteBounds="9.25, 7.875, 2, 2.1554996744791666">
       <DataClassMoniker Name="/QLDDataContext/LopHocPhan" />
       <nestedChildShapes>
-        <elementListCompartment Id="a134f4ac-0153-4914-bfb0-0352cb4267a3" absoluteBounds="9.39, 9.085, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="a134f4ac-0153-4914-bfb0-0352cb4267a3" absoluteBounds="9.265, 8.335, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(11.375 : 8.95755126953125); (11.75 : 8.95755126953125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(11.25 : 8.58255126953125); (11.75 : 8.58255126953125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/QLDDataContext/LopHocPhan/LopHocPhan_LopHocPhan_SinhVien" />
       <nodes>
         <classShapeMoniker Id="a812badc-c78c-459e-b89b-9766da0de98c" />
         <classShapeMoniker Id="9e4354e6-65db-4af4-9e1f-c088759ba1a0" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(8.125 : 9.76524983723958); (9.375 : 9.76524983723958)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(8.125 : 9.39024983723958); (9.25 : 9.39024983723958)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/QLDDataContext/GiangVien/GiangVien_LopHocPhan" />
       <nodes>
         <classShapeMoniker Id="1ff88986-5288-4af4-a1e3-9c795ba69a30" />
         <classShapeMoniker Id="a812badc-c78c-459e-b89b-9766da0de98c" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(8.21875 : 7.2131982421875); (8.21875 : 8.65625); (9.375 : 8.65625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(8.21875 : 7.2131982421875); (8.21875 : 8.28125); (9.25 : 8.28125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/QLDDataContext/HocPhan/HocPhan_LopHocPhan" />
       <nodes>
         <classShapeMoniker Id="f16fbd7e-8fc8-48e7-9363-c860a5dc2858" />

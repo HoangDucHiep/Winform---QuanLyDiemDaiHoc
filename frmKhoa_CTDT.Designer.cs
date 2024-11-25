@@ -397,6 +397,7 @@
             this.txtBoxHK.Name = "txtBoxHK";
             this.txtBoxHK.Size = new System.Drawing.Size(142, 26);
             this.txtBoxHK.TabIndex = 22;
+            this.txtBoxHK.Visible = false;
             this.txtBoxHK.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBoxHK_KeyDown);
             this.txtBoxHK.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxHK_KeyPress);
             // 
@@ -411,6 +412,7 @@
             this.label10.TabIndex = 9;
             this.label10.Text = "Học kì";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label10.Visible = false;
             // 
             // cbHp
             // 

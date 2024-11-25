@@ -16,7 +16,8 @@ namespace QuanLyDiemDaiHoc
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmMain());
+            Application.Run(new frmChiTietSV("212613775"));
+            //Application.Run(new frmNhapDiem());
         }
     }
 }

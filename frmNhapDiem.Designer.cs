@@ -30,23 +30,23 @@
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label7 = new System.Windows.Forms.Label();
-            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.cbKhoa = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.cbKhoas = new System.Windows.Forms.ComboBox();
-            this.cbLopHP = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.dgvDiem = new System.Windows.Forms.DataGridView();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.label5 = new System.Windows.Forms.Label();
+            this.cbLopHP = new System.Windows.Forms.ComboBox();
+            this.cbKhoas = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cbKhoa = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.btnSave = new System.Windows.Forms.Button();
             this.btnExcel = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.dgvDiem = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel1.SuspendLayout();
-            this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDiem)).BeginInit();
+            this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDiem)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -81,6 +81,21 @@
             this.label7.Text = "Quản lý điểm";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.ColumnCount = 1;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel3, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel4, 0, 1);
+            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(169, 53);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 2;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 37.5F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 62.5F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(1093, 102);
+            this.tableLayoutPanel2.TabIndex = 0;
+            // 
             // tableLayoutPanel3
             // 
             this.tableLayoutPanel3.ColumnCount = 8;
@@ -103,66 +118,9 @@
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
             this.tableLayoutPanel3.Size = new System.Drawing.Size(1087, 32);
             this.tableLayoutPanel3.TabIndex = 0;
-            // 
-            // cbKhoa
-            // 
-            this.cbKhoa.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbKhoa.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbKhoa.FormattingEnabled = true;
-            this.cbKhoa.Location = new System.Drawing.Point(66, 3);
-            this.cbKhoa.Name = "cbKhoa";
-            this.cbKhoa.Size = new System.Drawing.Size(256, 28);
-            this.cbKhoa.TabIndex = 1;
-            this.cbKhoa.SelectedIndexChanged += new System.EventHandler(this.cbKhoa_SelectedIndexChanged);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(3, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(57, 32);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Khoa";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(364, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(64, 32);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "Khóa";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // cbKhoas
-            // 
-            this.cbKhoas.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbKhoas.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbKhoas.FormattingEnabled = true;
-            this.cbKhoas.Location = new System.Drawing.Point(434, 3);
-            this.cbKhoas.Name = "cbKhoas";
-            this.cbKhoas.Size = new System.Drawing.Size(152, 28);
-            this.cbKhoas.TabIndex = 5;
-            this.cbKhoas.SelectedIndexChanged += new System.EventHandler(this.cbKhoas_SelectedIndexChanged);
-            // 
-            // cbLopHP
-            // 
-            this.cbLopHP.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbLopHP.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbLopHP.FormattingEnabled = true;
-            this.cbLopHP.Location = new System.Drawing.Point(770, 3);
-            this.cbLopHP.Name = "cbLopHP";
-            this.cbLopHP.Size = new System.Drawing.Size(314, 28);
-            this.cbLopHP.TabIndex = 8;
-            this.cbLopHP.SelectedIndexChanged += new System.EventHandler(this.cbLopHP_SelectedIndexChanged);
             // 
             // label5
             // 
@@ -176,33 +134,62 @@
             this.label5.Text = "Lớp học phần";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // tableLayoutPanel2
+            // cbLopHP
             // 
-            this.tableLayoutPanel2.ColumnCount = 1;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel3, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel4, 0, 1);
-            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(169, 53);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 2;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 37.5F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 62.5F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(1093, 102);
-            this.tableLayoutPanel2.TabIndex = 0;
+            this.cbLopHP.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cbLopHP.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbLopHP.FormattingEnabled = true;
+            this.cbLopHP.Location = new System.Drawing.Point(770, 3);
+            this.cbLopHP.Name = "cbLopHP";
+            this.cbLopHP.Size = new System.Drawing.Size(314, 28);
+            this.cbLopHP.TabIndex = 8;
+            this.cbLopHP.SelectedIndexChanged += new System.EventHandler(this.cbLopHP_SelectedIndexChanged);
             // 
-            // dgvDiem
+            // cbKhoas
             // 
-            this.dgvDiem.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvDiem.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvDiem.Location = new System.Drawing.Point(169, 161);
-            this.dgvDiem.Name = "dgvDiem";
-            this.dgvDiem.RowHeadersWidth = 51;
-            this.dgvDiem.RowTemplate.Height = 24;
-            this.dgvDiem.Size = new System.Drawing.Size(1093, 653);
-            this.dgvDiem.TabIndex = 4;
-            this.dgvDiem.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDiem_CellEndEdit);
-            this.dgvDiem.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dgvDiem_CellValidating);
+            this.cbKhoas.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cbKhoas.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbKhoas.FormattingEnabled = true;
+            this.cbKhoas.Location = new System.Drawing.Point(434, 3);
+            this.cbKhoas.Name = "cbKhoas";
+            this.cbKhoas.Size = new System.Drawing.Size(152, 28);
+            this.cbKhoas.TabIndex = 5;
+            this.cbKhoas.SelectedIndexChanged += new System.EventHandler(this.cbKhoas_SelectedIndexChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(364, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(64, 32);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "Khóa";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(3, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(57, 32);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Khoa";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // cbKhoa
+            // 
+            this.cbKhoa.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cbKhoa.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbKhoa.FormattingEnabled = true;
+            this.cbKhoa.Location = new System.Drawing.Point(66, 3);
+            this.cbKhoa.Name = "cbKhoa";
+            this.cbKhoa.Size = new System.Drawing.Size(256, 28);
+            this.cbKhoa.TabIndex = 1;
+            this.cbKhoa.SelectedIndexChanged += new System.EventHandler(this.cbKhoa_SelectedIndexChanged);
             // 
             // tableLayoutPanel4
             // 
@@ -222,6 +209,17 @@
             this.tableLayoutPanel4.Size = new System.Drawing.Size(1087, 58);
             this.tableLayoutPanel4.TabIndex = 1;
             // 
+            // btnExcel
+            // 
+            this.btnExcel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnExcel.Location = new System.Drawing.Point(898, 22);
+            this.btnExcel.Name = "btnExcel";
+            this.btnExcel.Size = new System.Drawing.Size(186, 33);
+            this.btnExcel.TabIndex = 5;
+            this.btnExcel.Text = "Xuất Excel";
+            this.btnExcel.UseVisualStyleBackColor = true;
+            this.btnExcel.Click += new System.EventHandler(this.btnExcel_Click);
+            // 
             // btnSave
             // 
             this.btnSave.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -233,16 +231,19 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // btnExcel
+            // dgvDiem
             // 
-            this.btnExcel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnExcel.Location = new System.Drawing.Point(898, 22);
-            this.btnExcel.Name = "btnExcel";
-            this.btnExcel.Size = new System.Drawing.Size(186, 33);
-            this.btnExcel.TabIndex = 5;
-            this.btnExcel.Text = "Xuất Excel";
-            this.btnExcel.UseVisualStyleBackColor = true;
-            this.btnExcel.Click += new System.EventHandler(this.btnExcel_Click);
+            this.dgvDiem.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvDiem.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvDiem.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvDiem.Location = new System.Drawing.Point(169, 161);
+            this.dgvDiem.Name = "dgvDiem";
+            this.dgvDiem.RowHeadersWidth = 51;
+            this.dgvDiem.RowTemplate.Height = 24;
+            this.dgvDiem.Size = new System.Drawing.Size(1093, 653);
+            this.dgvDiem.TabIndex = 4;
+            this.dgvDiem.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDiem_CellEndEdit);
+            this.dgvDiem.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dgvDiem_CellValidating);
             // 
             // frmNhapDiem
             // 
@@ -256,11 +257,11 @@
             this.Load += new System.EventHandler(this.frmNhapDiem_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
+            this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
-            this.tableLayoutPanel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDiem)).EndInit();
             this.tableLayoutPanel4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDiem)).EndInit();
             this.ResumeLayout(false);
 
         }
