@@ -53,5 +53,11 @@ namespace QuanLyDiemDaiHoc
             frmKhoa_CTDT frmKhoa_CTDT = new frmKhoa_CTDT();
             frmKhoa_CTDT.ShowDialog();
         }
+
+        private void quảnLýGiảngViênToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmGiangVien frmGiangVien = new frmGiangVien();
+            frmGiangVien.ShowDialog();
+        }
     }
 }

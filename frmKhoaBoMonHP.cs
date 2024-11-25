@@ -289,8 +289,11 @@ namespace QuanLyDiemDaiHoc
                 cbKhoa.Enabled = true;
                 cbMon.Enabled = true;
 
-                frmKhoaBoMonHP_Load(sender, e);
-
+                // Clear text boxes
+                txtBoxMaMon.Text = "";
+                txtBoxTenMon.Text = "";
+                cbGV.SelectedIndex = -1;
+                cbGV.Text = "";
 
             }
             else
@@ -311,9 +314,10 @@ namespace QuanLyDiemDaiHoc
                         MessageBox.Show(ex.Message);
                         return;
                     }
-                    frmKhoaBoMonHP_Load(sender, e);
                 }
             }
+            db = new QLDDataContext();
+            frmKhoaBoMonHP_Load(sender, e);
         }
 
         private void btnSaveMon_Click(object sender, EventArgs e)

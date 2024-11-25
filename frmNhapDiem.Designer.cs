@@ -400,6 +400,7 @@
             // 
             // dgvDiem
             // 
+            this.dgvDiem.AllowUserToOrderColumns = true;
             this.dgvDiem.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDiem.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvDiem.Location = new System.Drawing.Point(169, 175);

@@ -36,6 +36,7 @@
             this.quảnLýKhoaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quảnLýMônHọcPhầnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quảnLýCTDTToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.quảnLýGiảngViênToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -58,7 +59,8 @@
             this.quảnLýLớpHọcPhầnToolStripMenuItem,
             this.quảnLýKhoaToolStripMenuItem,
             this.quảnLýMônHọcPhầnToolStripMenuItem,
-            this.quảnLýCTDTToolStripMenuItem});
+            this.quảnLýCTDTToolStripMenuItem,
+            this.quảnLýGiảngViênToolStripMenuItem});
             this.xửLýDữLiệuToolStripMenuItem.Name = "xửLýDữLiệuToolStripMenuItem";
             this.xửLýDữLiệuToolStripMenuItem.Size = new System.Drawing.Size(106, 24);
             this.xửLýDữLiệuToolStripMenuItem.Text = "Xử lý dữ liệu";
@@ -105,6 +107,13 @@
             this.quảnLýCTDTToolStripMenuItem.Text = "Quản lý CTDT";
             this.quảnLýCTDTToolStripMenuItem.Click += new System.EventHandler(this.quảnLýCTDTToolStripMenuItem_Click);
             // 
+            // quảnLýGiảngViênToolStripMenuItem
+            // 
+            this.quảnLýGiảngViênToolStripMenuItem.Name = "quảnLýGiảngViênToolStripMenuItem";
+            this.quảnLýGiảngViênToolStripMenuItem.Size = new System.Drawing.Size(244, 26);
+            this.quảnLýGiảngViênToolStripMenuItem.Text = "Quản lý Giảng viên";
+            this.quảnLýGiảngViênToolStripMenuItem.Click += new System.EventHandler(this.quảnLýGiảngViênToolStripMenuItem_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -131,6 +140,7 @@
         private System.Windows.Forms.ToolStripMenuItem quảnLýKhoaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem quảnLýMônHọcPhầnToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem quảnLýCTDTToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem quảnLýGiảngViênToolStripMenuItem;
     }
 }
 

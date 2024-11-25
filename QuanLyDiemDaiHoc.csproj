@@ -47,6 +47,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmGiangVien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmGiangVien.Designer.cs">
+      <DependentUpon>frmGiangVien.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmKhoa.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -102,6 +108,12 @@
       <DependentUpon>QuanLyDiemTruongDaiHocDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="Utilities\CTDT_HocPhan.cs" />
+    <Compile Include="Utilities\EmailGenerator.cs" />
+    <Compile Include="Utilities\IdGenerator.cs" />
+    <Compile Include="Utilities\PasswordHasher.cs" />
+    <EmbeddedResource Include="frmGiangVien.resx">
+      <DependentUpon>frmGiangVien.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmKhoa.resx">
       <DependentUpon>frmKhoa.cs</DependentUpon>
     </EmbeddedResource>
@@ -132,6 +144,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="bin\Debug\Images\default_avatar.webp" />
+    <None Include="bin\Debug\QuanLyDiemDaiHoc.exe.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -168,7 +182,12 @@
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\Debug\QuanLyDiemDaiHoc.exe" />
+    <Content Include="bin\Debug\QuanLyDiemDaiHoc.pdb" />
     <Content Include="sqlQLSV.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Release\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
