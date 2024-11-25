@@ -13,90 +13,114 @@ namespace QuanLyDiemDaiHoc
 {
     public partial class frmSinhVienLop : Form
     {
-
         private QLDDataContext db = new QLDDataContext();
-        Table<Khoa> khoas;
         public frmSinhVienLop()
         {
             InitializeComponent();
-            dtpNgaySinh.Format = DateTimePickerFormat.Custom;
-            dtpNgaySinh.CustomFormat = "dd-MM-yyyy";
-            khoas= db.Khoas;
         }
 
         private void frmSinhVienLop_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'quanLyDiemTruongDaiHocDataSet.SinhVien' table. You can move, or remove it, as needed.
+            var khoas = db.Khoas.ToList();
             this.cbKhoa.DataSource = khoas;
             this.cbKhoa.DisplayMember = "TenKhoa";
             this.cbKhoa.ValueMember = "MaKhoa";
 
-            this.cbCTDT.DataSource = db.ChuongTrinhDaoTaos.Where(c => c.MaKhoa == cbKhoa.SelectedValue.ToString());
-            this.cbCTDT.DisplayMember = "TenCTDT";
-            this.cbCTDT.ValueMember = "MaCTDT";
-
-            this.cbKhoas.DataSource = db.Lops.Select(l => l.KhoaHoc).Distinct();
-
-            reloadCbLop();
+            updateCTDT();
         }
 
+        private void updateCTDT()
+        {
+            var ctdt = db.ChuongTrinhDaoTaos.Where(c => c.MaKhoa == cbKhoa.SelectedValue.ToString()).ToList();
+            if (ctdt.Count() == 0)
+            {
+                cbCTDT.DataSource = null;
+                cbCTDT.Text = string.Empty;
+            }
+            else
+            {
+                cbCTDT.DataSource = ctdt;
+
+                this.cbCTDT.DataSource = db.ChuongTrinhDaoTaos.Where(c => c.MaKhoa == cbKhoa.SelectedValue.ToString());
+                this.cbCTDT.DisplayMember = "TenCTDT";
+                this.cbCTDT.ValueMember = "MaCTDT";
+            }
+            updateKhoaHoc();
+            updateLops();
+        }
+
+        private void updateKhoaHoc()
+        {
+            if (cbCTDT.SelectedValue == null)
+            {
+                cbKhoas.DataSource = null;
+                cbKhoas.Text = string.Empty;
+            }
+            else
+            {
+                var khoas = db.Lops.Where(s => s.MaKhoa == cbKhoa.SelectedValue.ToString() && s.MaCTDT == cbCTDT.SelectedValue.ToString()).Select(l => l.KhoaHoc).Distinct();
+
+                if (khoas.Count() == 0)
+                {
+                    cbKhoas.DataSource = null;
+                    cbKhoas.Text = string.Empty;
+                }
+                else
+                {
+                    cbKhoas.DataSource = khoas;
+                }
+            }
+            updateLops();
+        }
+
+        private void updateLops()
+        {
+            if (cbKhoa.SelectedValue == null || cbCTDT.SelectedValue == null || string.IsNullOrEmpty(cbKhoas.Text))
+            {
+                cbLop.DataSource = null;
+                cbLop.Text = string.Empty;
+                return;
+            }
+            string khoa = cbKhoa.SelectedValue.ToString();
+            string ctdt = cbCTDT.SelectedValue.ToString();
+            string khoahoc = cbKhoas.Text;
+
+            if (string.IsNullOrEmpty(khoa) || string.IsNullOrEmpty(ctdt) || string.IsNullOrEmpty(khoahoc))
+            {
+                cbLop.DataSource = null;
+                cbLop.Text = "";
+            }
+            else
+            {
+                var lops = db.Lops.Where(l => l.MaKhoa == khoa && l.MaCTDT == ctdt && l.KhoaHoc == khoahoc).ToList();
+                if (lops.Count() == 0)
+                {
+                    cbLop.DataSource = null;
+                    cbLop.Text = "";
+                }
+                else
+                {
+                    cbLop.DataSource = lops;
+                    cbLop.DisplayMember = "TenLop";
+                    cbLop.ValueMember = "MaLop";
+                }
+            }
+        }
 
         private void cbCTDT_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.cbLop.DataSource = db.Lops_By(cbKhoa.SelectedValue.ToString(), cbCTDT.SelectedValue.ToString(), cbKhoas.Text);
-            reloadCbLop();
+            updateKhoaHoc();
         }
 
         private void cbKhoas_SelectedIndexChanged(object sender, EventArgs e)
         {
-            reloadCbLop();
+            updateLops();
         }
 
         private void cbKhoa_SelectedIndexChanged(object sender, EventArgs e)
         {
-            reloadCbLop();
-        }
-
-        private void reloadCbLop()
-        {
-            if (cbKhoa.SelectedValue != null && cbCTDT.SelectedValue != null && !string.IsNullOrEmpty(cbKhoas.Text))
-            {
-                var lops = db.Lops_By(cbKhoa.SelectedValue.ToString(), cbCTDT.SelectedValue.ToString(), cbKhoas.Text).ToList();
-                this.cbCTDT.DataSource = db.ChuongTrinhDaoTaos.Where(c => c.MaKhoa == cbKhoa.SelectedValue.ToString());
-                if (lops != null && lops.Any())
-                {
-                    BindingSource lopBinding = new BindingSource();
-                    lopBinding.DataSource = lops;
-                    cbLop.DataSource = lopBinding;
-                    cbLop.DisplayMember = "TenLop";
-                    cbLop.ValueMember = "MaLop";
-
-                    txtBoxMaLop.DataBindings.Clear();
-                    txtBoxTenLop.DataBindings.Clear();
-                    txtBoxMaLop.DataBindings.Add("Text", lopBinding, "MaLop");
-                    txtBoxTenLop.DataBindings.Add("Text", lopBinding, "TenLop");
-
-                    LoadDGV();
-                }
-                else
-                {
-                    ClearLopBindings();
-                    dgvSV.DataSource = null;
-                }
-            }
-            else
-            {
-                ClearLopBindings();
-            }
-        }
-
-        private void ClearLopBindings()
-        {
-            cbLop.DataSource = null;
-            txtBoxMaLop.DataBindings.Clear();
-            txtBoxTenLop.DataBindings.Clear();
-            txtBoxMaLop.Text = string.Empty;
-            txtBoxTenLop.Text = string.Empty;
+            updateCTDT();
         }
 
         bool adLop = false;
@@ -107,11 +131,12 @@ namespace QuanLyDiemDaiHoc
             txtBoxMaLop.Enabled = true;
             cbLop.Enabled = false;
             btnAddLop.Enabled = false;
+            cbCTDT.Enabled = false;
+            cbKhoa.Enabled = false;
             btnXoaHuy.Text = "Hủy";
 
             txtBoxMaLop.Text = string.Empty;
             txtBoxTenLop.Text = string.Empty;
-
         }
 
         bool lopUpdate = false;
@@ -124,14 +149,21 @@ namespace QuanLyDiemDaiHoc
                 txtBoxMaLop.Enabled = false;
                 cbLop.Enabled = true;
                 btnAddLop.Enabled = true;
-                frmSinhVienLop_Load(sender, e);
+
+                cbCTDT.Enabled = true;
+                cbKhoa.Enabled = true;
+                updateKhoaHoc();
+                updateLops();
             }
 
-            if (lopUpdate == true) {
+            if (lopUpdate == true)
+            {
                 lopUpdate = false;
                 btnAddLop.Enabled = true;
                 db.Lops_Update(txtBoxMaLop.Text, txtBoxTenLop.Text, cbKhoa.SelectedValue.ToString(), cbCTDT.SelectedValue.ToString(), cbKhoas.Text);
-                frmSinhVienLop_Load(sender, e);
+
+                updateKhoaHoc();
+                updateLops();
             }
             btnXoaHuy.Text = "Xóa lớp";
         }
@@ -145,7 +177,6 @@ namespace QuanLyDiemDaiHoc
                 cbLop.Enabled = true;
                 btnAddLop.Enabled = true;
                 btnXoaHuy.Text = "Xóa lớp";
-                reloadCbLop();
             }
             else
             {
@@ -153,7 +184,6 @@ namespace QuanLyDiemDaiHoc
                 try
                 {
                     db.Lops_Delete(txtBoxMaLop.Text);
-                    reloadCbLop();
                     MessageBox.Show("Xóa lớp thành công", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch (Exception ex)
@@ -168,7 +198,6 @@ namespace QuanLyDiemDaiHoc
             e.Handled = true;
         }
 
-
         private void txtBoxTenLop_KeyPress(object sender, KeyPressEventArgs e)
         {
             lopUpdate = true;
@@ -176,178 +205,103 @@ namespace QuanLyDiemDaiHoc
             btnXoaHuy.Text = "Hủy";
         }
 
-        private void dgvSV_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            // Kiểm tra nhanh các điều kiện không hợp lệ và thoát sớm
-            if (e.RowIndex < 0 || e.RowIndex >= dgvSV.Rows.Count) return;
-
-            var row = dgvSV.Rows[e.RowIndex];
-            if (row?.Cells[0]?.Value == null) return;
-
-            // Sử dụng BeginInvoke để cập nhật UI không đồng bộ
-            this.BeginInvoke(new Action(() =>
-            {
-                try
-                {
-                    // Cache row để tránh truy cập nhiều lần
-                    var cells = row.Cells;
-
-                    // Gom nhóm các thao tác cập nhật UI
-                    SuspendLayout();
-
-                    txtBoxMaSV.Text = cells[0].Value?.ToString() ?? string.Empty;
-                    txtBoxHoDem.Text = cells[1].Value?.ToString() ?? string.Empty;
-                    txtBoxTenSV.Text = cells[2].Value?.ToString() ?? string.Empty;
-                    txtBoxQue.Text = cells[4].Value?.ToString() ?? string.Empty;
-                    txtBoxDT.Text = cells[5].Value?.ToString() ?? string.Empty;
-                    txtBoxEmail.Text = cells[6].Value?.ToString() ?? string.Empty;
-
-                    // Xử lý ngày sinh riêng để tránh lỗi parsing
-                    if (cells[3].Value != null && DateTime.TryParse(cells[3].Value.ToString(), out DateTime ngaySinh))
-                    {
-                        dtpNgaySinh.Value = ngaySinh;
-                    }
-
-                    ResumeLayout(true);
-                }
-                catch (Exception ex)
-                {
-                    // Log lỗi nếu cần
-                    MessageBox.Show("Có lỗi xảy ra khi cập nhật dữ liệu", "Lỗi",
-                                  MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }));
-        }
-
-
-        // Thêm thuộc tính để tránh việc xử lý nhiều click liên tiếp
-        private DateTime lastClickTime = DateTime.MinValue;
-        private const int MIN_CLICK_INTERVAL = 200; // milliseconds
-
         private void dgvSV_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            // Kiểm tra thời gian giữa các lần click
-            var now = DateTime.Now;
-            if ((now - lastClickTime).TotalMilliseconds < MIN_CLICK_INTERVAL)
+        }
+
+        private void cbLop_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbLop.SelectedValue == null)
             {
-                return;
+                txtBoxMaLop.Text = string.Empty;
+                txtBoxTenLop.Text = string.Empty;
             }
-            lastClickTime = now;
-
-            // Gọi xử lý click bình thường
-            dgvSV_CellContentClick(sender, e);
-        }
-
-
-        bool adSV = false;
-        private void btnAddSV_Click(object sender, EventArgs e)
-        {
-            adSV = true;
-            txtBoxMaSV.Enabled = true;
-            btnAddSV.Enabled = false;
-
-            // clear textboxes
-            txtBoxMaSV.Text = string.Empty;
-            txtBoxHoDem.Text = string.Empty;
-            txtBoxTenSV.Text = string.Empty;
-            txtBoxQue.Text = string.Empty;
-            txtBoxDT.Text = string.Empty;
-            txtBoxEmail.Text = string.Empty;
-
-            dtpNgaySinh.Text = string.Empty;
-
-            btnXoaSV.Text = "Hủy";
-        }
-        bool updateSV = false;
-
-        private void btnUpdateSV_Click(object sender, EventArgs e)
-        {
-            if (adSV == true)
+            else
             {
-                adSV = false;
-                btnAddSV.Enabled = true;
-                txtBoxMaSV.Enabled = false;
-                db.SinhViens_Insert(txtBoxMaSV.Text, txtBoxHoDem.Text, txtBoxTenSV.Text, txtBoxMaLop.Text, dtpNgaySinh.Value, txtBoxQue.Text, txtBoxDT.Text, txtBoxEmail.Text);
-                frmSinhVienLop_Load(sender, e);
+                txtBoxMaLop.Text = cbLop.SelectedValue.ToString();
+                txtBoxTenLop.Text = cbLop.Text;
             }
-            
-            if (updateSV == true)
-            {
-                updateSV = false;
-                btnAddSV.Enabled = true;
-                db.SinhViens_Update(txtBoxMaSV.Text, txtBoxHoDem.Text, txtBoxTenSV.Text, dtpNgaySinh.Value, txtBoxQue.Text, txtBoxDT.Text, txtBoxEmail.Text);
-                frmSinhVienLop_Load(sender, e);
-            }
-            btnXoaSV.Text = "Xóa sinh viên";
+            updatedgv();
         }
 
-        private void txtBoxHoDem_KeyPress(object sender, KeyPressEventArgs e)
+        private void updatedgv()
         {
-            updateSV = true;
-            btnXoaSV.Text = "Hủy";
-            btnAddSV.Enabled = false;
-        }
-
-        private void btnXoaSV_Click(object sender, EventArgs e)
-        {
-            if (adSV == true || updateSV == true)
-            {
-                adSV = false;
-                btnAddSV.Enabled = true;
-                txtBoxMaSV.Enabled = false;
-                // clear textboxes
-                txtBoxMaSV.Text = string.Empty;
-                txtBoxHoDem.Text = string.Empty;
-                txtBoxTenSV.Text = string.Empty;
-                txtBoxQue.Text = string.Empty;
-                txtBoxDT.Text = string.Empty;
-                txtBoxEmail.Text = string.Empty;
-
-                dtpNgaySinh.Text = string.Empty;
-
-                btnXoaSV.Text = "Xóa sinh viên";
-            }
-        }
-
-        private void dtpNgaySinh_CloseUp(object sender, EventArgs e)
-        {
-            updateSV = true;
-            btnXoaSV.Text = "Hủy";
-            btnAddSV.Enabled = false;
-        }
-
-
-
-        private void LoadDGV()
-        {
-            var sinhViens = db.SinhViens.Where(sv => sv.MaLop == txtBoxMaLop.Text)
-                            .Select(sv => new
-                            {
-                                MaSinhVien = sv.MaSinhVien,
-                                HoDem = sv.HoDem,
-                                Ten = sv.Ten,
-                                NgaySinh = sv.NgaySinh,
-                                DiaChi = sv.DiaChi,
-                                DienThoai = sv.DienThoai,
-                                Email = sv.Email
-                            }).ToList();
-
-            if (sinhViens == null || sinhViens.Count == 0)
+            if (cbLop.SelectedValue == null)
             {
                 dgvSV.DataSource = null;
+                return;
             }
 
-            BindingSource bindingSource = new BindingSource();
-            bindingSource.DataSource = sinhViens;
-            this.dgvSV.DataSource = bindingSource;
+            string maLop = cbLop.SelectedValue.ToString();
+            var svList = db.SinhViens.Where(s => s.MaLop == maLop).ToList();
 
-            this.dgvSV.Columns["MaSinhVien"].HeaderText = "Mã Sinh Viên";
-            this.dgvSV.Columns["HoDem"].HeaderText = "Họ Đệm";
-            this.dgvSV.Columns["Ten"].HeaderText = "Tên";
-            this.dgvSV.Columns["NgaySinh"].HeaderText = "Ngày Sinh";
-            this.dgvSV.Columns["DiaChi"].HeaderText = "Địa Chỉ";
-            this.dgvSV.Columns["DienThoai"].HeaderText = "Điện Thoại";
-            this.dgvSV.Columns["Email"].HeaderText = "Email";
+            var bindingList = new BindingList<SinhVien>(svList);
+            var bindingSource = new BindingSource(bindingList, null);
+
+            dgvSV.DataSource = bindingSource;
+
+            dgvSV.Columns["MaSinhVien"].HeaderText = "Mã Sinh Viên";
+            dgvSV.Columns["HoDem"].HeaderText = "Họ Đệm";
+            dgvSV.Columns["Ten"].HeaderText = "Tên";
+            dgvSV.Columns["NgaySinh"].HeaderText = "Ngày Sinh";
+            dgvSV.Columns["DiaChi"].HeaderText = "Quê quán";
+            dgvSV.Columns["DienThoai"].HeaderText = "Điện Thoại";
+            dgvSV.Columns["Email"].HeaderText = "Email";
+
+            dgvSV.Columns["MaLop"].Visible = false;
+            dgvSV.Columns["Lop"].Visible = false;
+
+            // Set the date format for the "NgaySinh" column
+            dgvSV.Columns["NgaySinh"].DefaultCellStyle.Format = "dd/MM/yyyy";
+
+            dgvSV.AllowUserToAddRows = true; // Allow adding new rows
+        }
+
+
+        private void dgvSV_UserAddedRow(object sender, DataGridViewRowEventArgs e)
+        {
+            // Xử lý sự kiện khi người dùng thêm hàng mới
+            var newRow = e.Row;
+            if (newRow != null && newRow.Index >= 0 && newRow.Index < dgvSV.Rows.Count - 1)
+            {
+                var sinhVien = new SinhVien
+                {
+                    MaSinhVien = newRow.Cells["MaSinhVien"].Value?.ToString(),
+                    HoDem = newRow.Cells["HoDem"].Value?.ToString(),
+                    Ten = newRow.Cells["Ten"].Value?.ToString(),
+                    NgaySinh = DateTime.TryParse(newRow.Cells["NgaySinh"].Value?.ToString(), out DateTime ngaySinh) ? ngaySinh : (DateTime?)null,
+                    DiaChi = newRow.Cells["DiaChi"].Value?.ToString(),
+                    DienThoai = newRow.Cells["DienThoai"].Value?.ToString(),
+                    Email = newRow.Cells["Email"].Value?.ToString(),
+                    MaLop = cbLop.SelectedValue.ToString()
+                };
+
+                db.SinhViens.InsertOnSubmit(sinhVien);
+                db.SubmitChanges();
+            }
+        }
+
+        private void btnUpdateData_Click(object sender, EventArgs e)
+        {
+            // Cập nhật dữ liệu từ DataGridView vào cơ sở dữ liệu
+            foreach (DataGridViewRow row in dgvSV.Rows)
+            {
+                if (row.IsNewRow) continue;
+
+                string maSV = row.Cells["MaSinhVien"].Value?.ToString();
+                var sinhVien = db.SinhViens.SingleOrDefault(s => s.MaSinhVien == maSV);
+                if (sinhVien != null)
+                {
+                    sinhVien.HoDem = row.Cells["HoDem"].Value?.ToString();
+                    sinhVien.Ten = row.Cells["Ten"].Value?.ToString();
+                    sinhVien.NgaySinh = DateTime.TryParse(row.Cells["NgaySinh"].Value?.ToString(), out DateTime ngaySinh) ? ngaySinh : (DateTime?)null;
+                    sinhVien.DiaChi = row.Cells["DiaChi"].Value?.ToString();
+                    sinhVien.DienThoai = row.Cells["DienThoai"].Value?.ToString();
+                    sinhVien.Email = row.Cells["Email"].Value?.ToString();
+                }
+            }
+            db.SubmitChanges();
+            MessageBox.Show("Dữ liệu đã được cập nhật thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }
