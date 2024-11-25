@@ -387,6 +387,14 @@ namespace QuanLyDiemDaiHoc
                         sinhVien.DienThoai = row.Cells["DienThoai"].Value?.ToString();
                         sinhVien.Email = row.Cells["Email"].Value?.ToString();
 
+                        var newTK = new TK
+                        {
+                            MaTK = "TK_" + maSV,
+                            Email = sinhVien.Email,
+                            Password = Utilities.PasswordHasher.HashPassword(maSV),
+                            MaRole = "sv"
+                        };
+                        db.TKs.InsertOnSubmit(newTK);
                     }
                     else
                     {
@@ -411,7 +419,7 @@ namespace QuanLyDiemDaiHoc
                         {
                             MaTK = "TK_" + maSV,
                             Email = newSinhVien.Email,
-                            Password = maSV,
+                            Password = Utilities.PasswordHasher.HashPassword(maSV),
                             MaRole = "sv"
                         };
                         db.TKs.InsertOnSubmit(newTK);

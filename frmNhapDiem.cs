@@ -11,13 +11,15 @@ namespace QuanLyDiemDaiHoc
 {
     public partial class frmNhapDiem : Form
     {
-        public frmNhapDiem()
+        string maGV;
+        public frmNhapDiem(string maGV = null)
         {
             InitializeComponent();
             // Thêm sự kiện CellValidating để kiểm tra giá trị nhập vào
             dgvDiem.CellValidating += dgvDiem_CellValidating;
             // Thêm sự kiện CellEndEdit để tính toán điểm tổng kết
             dgvDiem.CellEndEdit += dgvDiem_CellEndEdit;
+            this.maGV = maGV;
         }
 
         private QLDDataContext db = new QLDDataContext();
@@ -29,7 +31,7 @@ namespace QuanLyDiemDaiHoc
             cbKhoa.DisplayMember = "TenKhoa";
             cbKhoa.ValueMember = "MaKhoa";
 
-            var data = db.DIEM_SELECT();
+            var data = (maGV == null) ? db.DIEM_SELECT() : db.DIEM_SELECT().Where(c=>c.MaGiangVien == maGV);
 
             var distinctKhoaHoc = data.Select(c => c.KhoaHoc).Distinct().ToList();
             cbKhoas.DataSource = distinctKhoaHoc;
@@ -240,7 +242,8 @@ namespace QuanLyDiemDaiHoc
 
                 // Thêm tiêu đề
                 ws.Cells[1, 1] = "Bảng điểm lớp học phần";
-                ws.Range["A1"].Font.Size = 16;
+                ws.Range["A1"].Font.Size = 20;
+                ws.Range["A1"].RowHeight = 25;
                 ws.Range["A1"].Font.Bold = true;
                 ws.Range["A1", "E1"].Merge();
                 ws.Range["A1"].HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;

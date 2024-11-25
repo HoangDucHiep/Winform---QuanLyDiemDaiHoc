@@ -10,14 +10,15 @@ using System.Windows.Forms;
 
 namespace QuanLyDiemDaiHoc
 {
-    public partial class frmMain : Form
+    public partial class frmMainGV : Form
     {
         FrmDangNhap FrmDangNhap;
-        public frmMain(FrmDangNhap frm)
+        string MaGV;
+        public frmMainGV(FrmDangNhap frm, string maGV)
         {
             InitializeComponent();
             FrmDangNhap = frm;
-
+            MaGV = maGV;
         }
 
         private void quảnLíSinhViênLớpToolStripMenuItem_Click(object sender, EventArgs e)
@@ -29,32 +30,8 @@ namespace QuanLyDiemDaiHoc
 
         private void quảnLýĐiểmToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmNhapDiem frmNhapDiem = new frmNhapDiem();
+            frmNhapDiem frmNhapDiem = new frmNhapDiem(MaGV);
             frmNhapDiem.ShowDialog();
-        }
-
-        private void quảnLýLớpHọcPhầnToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            frmLopHP frmLopHP = new frmLopHP();
-            frmLopHP.ShowDialog();
-        }
-
-        private void quảnLýKhoaToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            frmKhoa frmKhoa = new frmKhoa();
-            frmKhoa.ShowDialog();
-        }
-
-        private void quảnLýMônHọcPhầnToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            frmKhoaBoMonHP frmKhoaBoMonHP = new frmKhoaBoMonHP();
-            frmKhoaBoMonHP.ShowDialog();
-        }
-
-        private void quảnLýCTDTToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            frmKhoa_CTDT frmKhoa_CTDT = new frmKhoa_CTDT();
-            frmKhoa_CTDT.ShowDialog();
         }
 
         private void quảnLýGiảngViênToolStripMenuItem_Click(object sender, EventArgs e)
@@ -70,9 +47,12 @@ namespace QuanLyDiemDaiHoc
             this.Close();
         }
 
-        private void frmMain_Load(object sender, EventArgs e)
+        private void frmMainGV_Load(object sender, EventArgs e)
         {
 
         }
+
+
+
     }
 }

@@ -148,6 +148,7 @@
             this.btnExport.TabIndex = 0;
             this.btnExport.Text = "Xuất Excel";
             this.btnExport.UseVisualStyleBackColor = true;
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
             // tableLayoutPanel9
             // 
@@ -184,6 +185,7 @@
             // txtBoxXepLoai
             // 
             this.txtBoxXepLoai.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtBoxXepLoai.Enabled = false;
             this.txtBoxXepLoai.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBoxXepLoai.Location = new System.Drawing.Point(131, 203);
             this.txtBoxXepLoai.Name = "txtBoxXepLoai";
@@ -193,6 +195,7 @@
             // txtBoxGPAChu
             // 
             this.txtBoxGPAChu.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtBoxGPAChu.Enabled = false;
             this.txtBoxGPAChu.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBoxGPAChu.Location = new System.Drawing.Point(131, 152);
             this.txtBoxGPAChu.Name = "txtBoxGPAChu";
@@ -202,6 +205,7 @@
             // txtBoxGPA4
             // 
             this.txtBoxGPA4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtBoxGPA4.Enabled = false;
             this.txtBoxGPA4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBoxGPA4.Location = new System.Drawing.Point(131, 102);
             this.txtBoxGPA4.Name = "txtBoxGPA4";
@@ -211,6 +215,7 @@
             // txtBoxGPA10
             // 
             this.txtBoxGPA10.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtBoxGPA10.Enabled = false;
             this.txtBoxGPA10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBoxGPA10.Location = new System.Drawing.Point(131, 55);
             this.txtBoxGPA10.Name = "txtBoxGPA10";
@@ -325,6 +330,7 @@
             // txtBoxSDT
             // 
             this.txtBoxSDT.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtBoxSDT.Enabled = false;
             this.txtBoxSDT.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBoxSDT.Location = new System.Drawing.Point(134, 106);
             this.txtBoxSDT.Name = "txtBoxSDT";
@@ -334,6 +340,7 @@
             // txtBoxEmail
             // 
             this.txtBoxEmail.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtBoxEmail.Enabled = false;
             this.txtBoxEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBoxEmail.Location = new System.Drawing.Point(134, 53);
             this.txtBoxEmail.Name = "txtBoxEmail";
@@ -343,6 +350,7 @@
             // txtBoxQue
             // 
             this.txtBoxQue.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtBoxQue.Enabled = false;
             this.txtBoxQue.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBoxQue.Location = new System.Drawing.Point(134, 3);
             this.txtBoxQue.Name = "txtBoxQue";
@@ -416,6 +424,7 @@
             // txtBoxNgaySinh
             // 
             this.txtBoxNgaySinh.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtBoxNgaySinh.Enabled = false;
             this.txtBoxNgaySinh.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBoxNgaySinh.Location = new System.Drawing.Point(126, 150);
             this.txtBoxNgaySinh.Name = "txtBoxNgaySinh";
@@ -425,6 +434,7 @@
             // txtBoxLop
             // 
             this.txtBoxLop.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtBoxLop.Enabled = false;
             this.txtBoxLop.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBoxLop.Location = new System.Drawing.Point(126, 103);
             this.txtBoxLop.Name = "txtBoxLop";
@@ -434,6 +444,7 @@
             // txtBoxHoVaTen
             // 
             this.txtBoxHoVaTen.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtBoxHoVaTen.Enabled = false;
             this.txtBoxHoVaTen.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBoxHoVaTen.Location = new System.Drawing.Point(126, 50);
             this.txtBoxHoVaTen.Name = "txtBoxHoVaTen";
@@ -491,6 +502,7 @@
             // txtBoxMaSV
             // 
             this.txtBoxMaSV.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtBoxMaSV.Enabled = false;
             this.txtBoxMaSV.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBoxMaSV.Location = new System.Drawing.Point(126, 3);
             this.txtBoxMaSV.Name = "txtBoxMaSV";

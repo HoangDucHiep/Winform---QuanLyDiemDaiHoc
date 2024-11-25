@@ -71,7 +71,7 @@ namespace QuanLyDiemDaiHoc
                 txtBoxSDT.Text = dgvGV.Rows[e.RowIndex].Cells["DienThoai"].Value?.ToString() ?? string.Empty;
                 txtBoxEmail.Text = dgvGV.Rows[e.RowIndex].Cells["Email"].Value?.ToString() ?? string.Empty;
 
-                string imagePath = dgvGV.Rows[e.RowIndex].Cells["Anh"].Value?.ToString() ?? "default_avatar.png";
+                string imagePath = string.IsNullOrEmpty(dgvGV.Rows[e.RowIndex].Cells["Anh"].Value?.ToString()) ? "default_avatar.png" : dgvGV.Rows[e.RowIndex].Cells["Anh"].Value?.ToString();
 
                 pictureBox1.Image = Image.FromFile(initialDirectory + imagePath);
 
@@ -108,6 +108,7 @@ namespace QuanLyDiemDaiHoc
         {
             if (adGV || updateGV)
             {
+                isUpdatingFromGrid = true;
                 adGV = false;
                 updateGV = false;
 
@@ -128,6 +129,7 @@ namespace QuanLyDiemDaiHoc
                 pictureBox1.Image = Image.FromFile(initialDirectory + "default_avatar.png");
 
                 btnAdd.Enabled = true;
+                isUpdatingFromGrid = false;
 
 
 
@@ -279,6 +281,7 @@ namespace QuanLyDiemDaiHoc
                     gv.DienThoai = sdt;
                     gv.Email = email;
                     gv.Anh = loadedImagePath;
+
 
                     db.SubmitChanges();
 

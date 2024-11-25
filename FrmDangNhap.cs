@@ -30,7 +30,7 @@ namespace QuanLyDiemDaiHoc
         private void btnLogin_Click(object sender, EventArgs e)
         {
             string email = txtBoxEmail.Text;
-            string password = txtBoxMK.Text;
+            string password = Utilities.PasswordHasher.HashPassword(txtBoxMK.Text);
 
             if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
             {
@@ -48,14 +48,30 @@ namespace QuanLyDiemDaiHoc
 
             if (user.MaRole == "ad")
             {
-                frmMain frmMain = new frmMain();
+                frmMain frmMain = new frmMain(this);
                 frmMain.Show();
+                this.Hide();
+            }
+            else if (user.MaRole == "sv")
+            {
+                string result = user.MaTK.Substring(3);
+                frmChiTietSV frmChiTietSV = new frmChiTietSV(result);
+                frmChiTietSV.Show();
+                this.Hide();
+            }
+            else if (user.MaRole == "gv")
+            {
+                frmMainGV frmMainGV = new frmMainGV(this, user.MaTK.Substring(3));
+                frmMainGV.Show();
                 this.Hide();
             }
             else
             {
                 MessageBox.Show("Tài khoản không có quyền truy cập");
             }
+
+            txtBoxEmail.Text = "";
+            txtBoxMK.Text = "";
         }
     }
 }
