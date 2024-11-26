@@ -410,6 +410,13 @@ namespace QuanLyDiemDaiHoc
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), maCTDT, tenCTDT, maKhoa);
 			return ((int)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.DIEM_SELECT_GV")]
+		public ISingleResult<DIEM_SELECT_GVResult> DIEM_SELECT_GV([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(50)")] string maGV)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), maGV);
+			return ((ISingleResult<DIEM_SELECT_GVResult>)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.BoMon")]
@@ -4783,6 +4790,338 @@ namespace QuanLyDiemDaiHoc
 				if ((this._LanHoc != value))
 				{
 					this._LanHoc = value;
+				}
+			}
+		}
+	}
+	
+	public partial class DIEM_SELECT_GVResult
+	{
+		
+		private string _MaHocPhan;
+		
+		private string _MaLopHocPhan;
+		
+		private string _MaSinhVien;
+		
+		private System.Nullable<double> _DiemQuaTrinh;
+		
+		private System.Nullable<double> _DiemHe4;
+		
+		private string _DiemHeChu;
+		
+		private System.Nullable<double> _DiemThiKTHP;
+		
+		private System.Nullable<double> _DiemTKHP;
+		
+		private System.Nullable<int> _LanHoc;
+		
+		private string _HoTen;
+		
+		private string _MaLop;
+		
+		private string _MaKhoa;
+		
+		private string _KhoaHoc;
+		
+		private string _TenLopHocPhan;
+		
+		private string _MaGiangVien;
+		
+		private string _NamHoc;
+		
+		private System.Nullable<int> _HocKy;
+		
+		private string _DotHoc;
+		
+		public DIEM_SELECT_GVResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaHocPhan", DbType="VarChar(25) NOT NULL", CanBeNull=false)]
+		public string MaHocPhan
+		{
+			get
+			{
+				return this._MaHocPhan;
+			}
+			set
+			{
+				if ((this._MaHocPhan != value))
+				{
+					this._MaHocPhan = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaLopHocPhan", DbType="VarChar(25) NOT NULL", CanBeNull=false)]
+		public string MaLopHocPhan
+		{
+			get
+			{
+				return this._MaLopHocPhan;
+			}
+			set
+			{
+				if ((this._MaLopHocPhan != value))
+				{
+					this._MaLopHocPhan = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaSinhVien", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
+		public string MaSinhVien
+		{
+			get
+			{
+				return this._MaSinhVien;
+			}
+			set
+			{
+				if ((this._MaSinhVien != value))
+				{
+					this._MaSinhVien = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DiemQuaTrinh", DbType="Float")]
+		public System.Nullable<double> DiemQuaTrinh
+		{
+			get
+			{
+				return this._DiemQuaTrinh;
+			}
+			set
+			{
+				if ((this._DiemQuaTrinh != value))
+				{
+					this._DiemQuaTrinh = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DiemHe4", DbType="Float")]
+		public System.Nullable<double> DiemHe4
+		{
+			get
+			{
+				return this._DiemHe4;
+			}
+			set
+			{
+				if ((this._DiemHe4 != value))
+				{
+					this._DiemHe4 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DiemHeChu", DbType="VarChar(10)")]
+		public string DiemHeChu
+		{
+			get
+			{
+				return this._DiemHeChu;
+			}
+			set
+			{
+				if ((this._DiemHeChu != value))
+				{
+					this._DiemHeChu = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DiemThiKTHP", DbType="Float")]
+		public System.Nullable<double> DiemThiKTHP
+		{
+			get
+			{
+				return this._DiemThiKTHP;
+			}
+			set
+			{
+				if ((this._DiemThiKTHP != value))
+				{
+					this._DiemThiKTHP = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DiemTKHP", DbType="Float")]
+		public System.Nullable<double> DiemTKHP
+		{
+			get
+			{
+				return this._DiemTKHP;
+			}
+			set
+			{
+				if ((this._DiemTKHP != value))
+				{
+					this._DiemTKHP = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LanHoc", DbType="Int")]
+		public System.Nullable<int> LanHoc
+		{
+			get
+			{
+				return this._LanHoc;
+			}
+			set
+			{
+				if ((this._LanHoc != value))
+				{
+					this._LanHoc = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HoTen", DbType="NVarChar(71)")]
+		public string HoTen
+		{
+			get
+			{
+				return this._HoTen;
+			}
+			set
+			{
+				if ((this._HoTen != value))
+				{
+					this._HoTen = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaLop", DbType="VarChar(25) NOT NULL", CanBeNull=false)]
+		public string MaLop
+		{
+			get
+			{
+				return this._MaLop;
+			}
+			set
+			{
+				if ((this._MaLop != value))
+				{
+					this._MaLop = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaKhoa", DbType="VarChar(10)")]
+		public string MaKhoa
+		{
+			get
+			{
+				return this._MaKhoa;
+			}
+			set
+			{
+				if ((this._MaKhoa != value))
+				{
+					this._MaKhoa = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_KhoaHoc", DbType="VarChar(10)")]
+		public string KhoaHoc
+		{
+			get
+			{
+				return this._KhoaHoc;
+			}
+			set
+			{
+				if ((this._KhoaHoc != value))
+				{
+					this._KhoaHoc = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TenLopHocPhan", DbType="NVarChar(200)")]
+		public string TenLopHocPhan
+		{
+			get
+			{
+				return this._TenLopHocPhan;
+			}
+			set
+			{
+				if ((this._TenLopHocPhan != value))
+				{
+					this._TenLopHocPhan = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaGiangVien", DbType="VarChar(10)")]
+		public string MaGiangVien
+		{
+			get
+			{
+				return this._MaGiangVien;
+			}
+			set
+			{
+				if ((this._MaGiangVien != value))
+				{
+					this._MaGiangVien = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NamHoc", DbType="VarChar(20)")]
+		public string NamHoc
+		{
+			get
+			{
+				return this._NamHoc;
+			}
+			set
+			{
+				if ((this._NamHoc != value))
+				{
+					this._NamHoc = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HocKy", DbType="Int")]
+		public System.Nullable<int> HocKy
+		{
+			get
+			{
+				return this._HocKy;
+			}
+			set
+			{
+				if ((this._HocKy != value))
+				{
+					this._HocKy = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DotHoc", DbType="VarChar(10)")]
+		public string DotHoc
+		{
+			get
+			{
+				return this._DotHoc;
+			}
+			set
+			{
+				if ((this._DotHoc != value))
+				{
+					this._DotHoc = value;
 				}
 			}
 		}

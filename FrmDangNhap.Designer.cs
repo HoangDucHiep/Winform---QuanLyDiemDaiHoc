@@ -106,6 +106,7 @@
             this.MaximumSize = new System.Drawing.Size(793, 352);
             this.MinimumSize = new System.Drawing.Size(793, 352);
             this.Name = "FrmDangNhap";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmDangNhap";
             this.Load += new System.EventHandler(this.FrmDangNhap_Load);
             this.ResumeLayout(false);

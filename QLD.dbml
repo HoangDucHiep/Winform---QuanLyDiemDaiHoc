@@ -418,4 +418,27 @@
     <Parameter Name="maKhoa" Type="System.String" DbType="NVarChar(10)" />
     <Return Type="System.Int32" />
   </Function>
+  <Function Name="dbo.DIEM_SELECT_GV" Method="DIEM_SELECT_GV">
+    <Parameter Name="maGV" Type="System.String" DbType="NVarChar(50)" />
+    <ElementType Name="DIEM_SELECT_GVResult">
+      <Column Name="MaHocPhan" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="MaLopHocPhan" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="MaSinhVien" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="DiemQuaTrinh" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="DiemHe4" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="DiemHeChu" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="DiemThiKTHP" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="DiemTKHP" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="LanHoc" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="HoTen" Type="System.String" DbType="NVarChar(71)" CanBeNull="true" />
+      <Column Name="MaLop" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="MaKhoa" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="KhoaHoc" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="TenLopHocPhan" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="MaGiangVien" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="NamHoc" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="HocKy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DotHoc" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

@@ -31,12 +31,12 @@ namespace QuanLyDiemDaiHoc
             cbKhoa.DisplayMember = "TenKhoa";
             cbKhoa.ValueMember = "MaKhoa";
 
-            var data = (maGV == null) ? db.DIEM_SELECT() : db.DIEM_SELECT().Where(c=>c.MaGiangVien == maGV);
+            var data = db.DIEM_SELECT_GV(maGV);
 
             var distinctKhoaHoc = data.Select(c => c.KhoaHoc).Distinct().ToList();
             cbKhoas.DataSource = distinctKhoaHoc;
 
-            cbLopHP.DataSource = db.LopHocPhans;
+            cbLopHP.DataSource = maGV == null  ? db.LopHocPhans : db.LopHocPhans.Where(c=>c.MaGiangVien == maGV);
             cbLopHP.DisplayMember = "TenLopHocPhan";
             cbLopHP.ValueMember = "MaLopHocPhan";
             DisplayData();
